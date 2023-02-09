@@ -14,20 +14,24 @@ const getUser = async (req, res) => {
 
 const postUser = async (req, res) => {
     try {
-        const hash = await bcrypt.hash(req.body.password, bcrypt.genSalt(15));
+        let user = await User.findOne({ email: req.body.email });
+        if (user)
+            return res.status(400).json({ message: "Email already used!" });
+        const hash = await bcrypt.hash(req.body.password, 15);
 
-        const user = new User({
+        user = new User({
             name: req.body.name,
             email: req.body.email,
             gender: req.body.gender,
             phone: req.body.phone,
             password: hash,
+            isAdmin: req.body.isAdmin,
             address: req.body.address,
             profilePicSrc: req.body.profilePicSrc,
         });
 
         const wishlist = new Wishlist({
-            customer: user._id,
+            user: user._id,
         });
 
         user.wishlist = wishlist;

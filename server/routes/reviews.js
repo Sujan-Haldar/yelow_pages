@@ -1,6 +1,7 @@
 const express = require("express");
-const admin = require("../controller/permission/admin");
+const admin = require("../middleware/permission/admin");
 const router = express.Router();
+const auth = require("../middleware/permission/auth");
 
 const {
     getAllReviews,
@@ -12,8 +13,8 @@ const {
 
 router.get("/", getAllReviews);
 router.get("/:id", getReview);
-router.post("/", postReview);
-router.put("/:id", updateReview);
-router.delete("/:id", [admin], deleteReview);
+router.post("/", [auth], postReview);
+router.put("/:id", [auth], updateReview);
+router.delete("/:id", [auth], deleteReview);
 
 module.exports = router;
