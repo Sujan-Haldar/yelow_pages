@@ -14,6 +14,11 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    donatedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
     previewImgSrc: {
         type: String,
         required: true,

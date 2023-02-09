@@ -15,6 +15,7 @@ const postBook = async (req, res) => {
         const book = new Book({
             title: req.body.title,
             author: req.body.author,
+            donatedBy: req.user._id,
             publishYear: req.body.publishYear,
             previewImgSrc: req.body.previewImgSrc,
         });
@@ -27,8 +28,13 @@ const postBook = async (req, res) => {
 };
 
 const deleteBook = async (req, res) => {
-    const book = await Book.findByIdAndRemove(req.params.id);
+    const book = await Book.findById(req.params.id);
     if (!book) return res.status(404).send("Book Not Found!");
+
+    if (req.user.isAdmin || req.user._id === book.donatedBy.toHexString())
+        await book.remove();
+    else return res.status(403).json({ message: "Access Denied!" });
+
     res.send(book);
 };
 

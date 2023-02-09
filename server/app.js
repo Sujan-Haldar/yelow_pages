@@ -2,12 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 const path = require("path");
 const books = require("./routes/books");
 const users = require("./routes/users");
 const wishlists = require("./routes/wishlists");
 const reviews = require("./routes/reviews");
+const login = require("./routes/login");
 
 //Internal imports
 const {
@@ -18,7 +18,6 @@ const {
 //express app
 const app = express();
 app.use(cors());
-app.use(cookieParser());
 
 //Env configaration
 dotenv.config();
@@ -53,6 +52,7 @@ app.use("/books", books);
 app.use("/users", users);
 app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
+app.use("/login", login);
 
 //
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/permission/auth");
 
 const {
     getAllWishlists,
@@ -11,6 +12,6 @@ const {
 router.get("/", getAllWishlists);
 router.get("/:id", getWishlist);
 router.put("/:id", updateWishlist);
-router.delete("/:id", deleteWishlist);
+router.delete("/:id", [auth], deleteWishlist);
 
 module.exports = router;
