@@ -12,12 +12,16 @@ const getBook = async (req, res) => {
 
 const postBook = async (req, res) => {
     try {
+        // const book = new Book({
+        //     title: req.body.title,
+        //     author: req.body.author,
+        //     donatedBy: req.user._id,
+        //     publishYear: req.body.publishYear,
+        //     previewImgSrc: req.body.previewImgSrc,
+        // });
         const book = new Book({
-            title: req.body.title,
-            author: req.body.author,
-            donatedBy: req.user._id,
-            publishYear: req.body.publishYear,
-            previewImgSrc: req.body.previewImgSrc,
+            ...req.body,
+            previewImgSrc: req.files[0].filename,
         });
 
         await book.save();
