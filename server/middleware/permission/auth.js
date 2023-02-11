@@ -6,8 +6,13 @@ module.exports = (req, res, next) => {
     const token = req.header("auth-token");
     if (!token) return res.status(401).json({ message: "Login Required." });
 
-    const decoded = jwt.verify(token, process.env.jwtSecretKey);
+    try {
+        req.user = jwt.verify(token, process.env.jwtSecretKey);
+    } catch (ex) {
+        return res
+            .status(401)
+            .json({ message: "Session Expired! Login Required..." });
+    }
 
-    req.user = decoded;
     next();
 };

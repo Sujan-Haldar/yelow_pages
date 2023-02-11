@@ -1,4 +1,4 @@
-const Review = require("../models/review");
+const { Review } = require("../models/review");
 
 const getAllReviews = async (req, res) => {
     res.send(await Review.find());
@@ -26,7 +26,6 @@ const postReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
     const review = await Review.findByIdAndRemove(req.params.id);
-    if (!review) return res.status(404).send("Review Not Found!");
     res.send(review);
 };
 
@@ -34,7 +33,6 @@ const updateReview = async (req, res) => {
     const review = await Review.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     });
-    if (!review) return res.status(404).send("Review Not Found!");
 
     res.send(await review.save());
 };

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const yup = require("yup");
 
 const reviewSchema = new mongoose.Schema({
     user: {
@@ -21,4 +22,12 @@ const reviewSchema = new mongoose.Schema({
 
 const Review = mongoose.model("Review", reviewSchema);
 
-module.exports = Review;
+const validator = async review => {
+    const schema = yup.object({
+        content: yup.string().required().min(7).max(255),
+    });
+
+    return schema.validate(review).catch(err => err);
+};
+
+module.exports = { Review, validator };

@@ -18,7 +18,7 @@ const login = async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(200)
         .setHeader("auth-token", token)
-        .json({ message: "User Logged in Successfully.", token });
+        .json({ message: `Welcome to Yellow Pages ${user.name} 😃`, token });
 };
 
 module.exports = login;
