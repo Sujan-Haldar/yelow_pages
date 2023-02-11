@@ -14,6 +14,7 @@ function BookDonationForm() {
     const [bookCondition,setBookCondition] = useState("Poor");
     const [bookImg,setBookImg] = useState(null)
     const submitForm = async(e)=>{
+        e.preventDefault()
         try {
             const formData = new FormData();
             formData.append("title", bookName);

@@ -47,6 +47,7 @@ function ReviewSection() {
             </div>
             <div className="content" style={{ textAlign: "center" }}>
             <NavLink to="/feedback" className="btn">Give your feedback</NavLink>
+            
             </div>
         </section>
     );
