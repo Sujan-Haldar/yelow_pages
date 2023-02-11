@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const yup = require("yup");
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -10,6 +11,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -34,8 +36,11 @@ const userSchema = new mongoose.Schema({
     profilePicSrc: {
         type: String,
         required: true,
-        default:
-            "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png",
+        default: function () {
+            this.gender === "female"
+                ? "https://img.favpng.com/5/1/21/computer-icons-user-profile-avatar-female-png-favpng-cqykKc0Hpkh65ueWt6Nh2KFvS.jpg"
+                : "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png";
+        },
     },
     isAdmin: {
         type: Boolean,
@@ -54,7 +59,20 @@ userSchema.methods.generateAuthToken = async function () {
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+const validator = user => {
+    const userBody = yup.object({
+        name: yup.string().required().min(3).max(20),
+        email: yup.string().email().required(),
+        password: yup.string().required().min(8).max(255),
+        address: yup.string().required().min(5),
+        gender: yup.string(),
+        phone: yup.number().min(10).max(10),
+    });
+
+    return userBody.validate(user).catch(err => err);
+};
+
+module.exports = { User, validator };
 
 // Male DP : "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png"
 

@@ -11,17 +11,13 @@ const getReview = async (req, res) => {
 };
 
 const postReview = async (req, res) => {
-    try {
-        const review = new Review({
-            user: req.body.user,
-            content: req.body.content,
-        });
+    const review = new Review({
+        user: req.user._id,
+        content: req.body.content,
+    });
 
-        await review.save();
-        res.send(review);
-    } catch (err) {
-        return res.status(400).send(err.message);
-    }
+    await review.save();
+    res.send(review);
 };
 
 const deleteReview = async (req, res) => {

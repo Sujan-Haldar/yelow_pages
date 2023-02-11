@@ -36,7 +36,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //set static folder
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/bookimage",express.static(path.join(__dirname,"public/uploads/bookImage/")))
+app.use(
+    "/bookimage",
+    express.static(path.join(__dirname, "public/uploads/bookImage/"))
+);
 
 //
 
@@ -48,7 +51,6 @@ app.use("/bookimage",express.static(path.join(__dirname,"public/uploads/bookImag
 
 //Routing setup
 app.get("/", (req, res) => res.send("SERVER RUNNING.............."));
-// app.get("/", (req, res) => console.log(req.cookies));
 app.use("/books", books);
 app.use("/users", users);
 app.use("/wishlists", wishlists);

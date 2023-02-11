@@ -3,6 +3,8 @@ const router = express.Router();
 const bookUpload = require("../middleware/book/bookUpload");
 const auth = require("../middleware/permission/auth");
 const bookOwner = require("../middleware/permission/bookOwner");
+const { validator } = require("../models/book");
+const validateBody = require("../middleware/common/validateBody");
 
 const {
     getAllBooks,
@@ -15,12 +17,13 @@ const {
 router.get("/", getAllBooks);
 router.get("/:id", getBook);
 
-//changed by Sujan
-router.post("/", [auth], postBook);
-// router.post("/", [auth, bookUpload], postBook);
-//change by sujan
+// Using Default Book Preview Image
+router.post("/", [auth, validateBody(validator)], postBook);
 
-router.put("/:id", [auth, bookOwner], updateBook);
+// For Custom Book Preview Image Upload
+// router.post("/", [auth, bookUpload, validateBody(validator)], postBook);
+
+router.put("/:id", [auth, bookOwner, validateBody(validator)], updateBook);
 router.delete("/:id", [auth, bookOwner], deleteBook);
 
 module.exports = router;
