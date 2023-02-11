@@ -23,6 +23,7 @@ const updateWishlist = async (req, res) => {
     const wishlist = await Wishlist.findById(req.params.id);
 
     if (!wishlist) return res.status(404).send("Wishlist Not Found!");
+
     wishlist.books.push(req.body.book);
 
     res.send(await wishlist.save());

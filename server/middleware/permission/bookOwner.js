@@ -1,4 +1,4 @@
-const Book = require("../../models/book");
+const { Book } = require("../../models/book");
 
 module.exports = async (req, res, next) => {
     const book = await Book.findById(req.params.id);

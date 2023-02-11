@@ -1,4 +1,4 @@
-const Book = require("../models/book");
+const { Book } = require("../models/book");
 
 const getAllBooks = async (req, res) => {
     res.send(await Book.find());
@@ -11,21 +11,17 @@ const getBook = async (req, res) => {
 };
 
 const postBook = async (req, res) => {
-    try {
-        const book = new Book({
-            //     title: req.body.title,
-            //     author: req.body.author,
-            //     publishYear: req.body.publishYear,
-            ...req.body,
-            donatedBy: req.user._id,
-            // previewImgSrc: req.files[0].filename,
-        });
+    const book = new Book({
+        title: req.body.title,
+        author: req.body.author,
+        publishYear: req.body.publishYear,
+        donatedBy: req.user._id,
+    });
 
-        await book.save();
-        res.send(book);
-    } catch (err) {
-        return res.status(400).send(err.message);
-    }
+    if (req.files) book.previewImgSrc = req.files[0].filename;
+
+    await book.save();
+    res.send(book);
 };
 
 const deleteBook = async (req, res) => {

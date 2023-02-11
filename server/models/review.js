@@ -24,7 +24,7 @@ const Review = mongoose.model("Review", reviewSchema);
 
 const validator = async review => {
     const schema = yup.object({
-        content: yup.string().required().min(7).max(255),
+        content: yup.string().required().min(5).max(255),
     });
 
     return schema.validate(review).catch(err => err);
