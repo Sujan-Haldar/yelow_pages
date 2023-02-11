@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import pic from "../image/pic-1.png";
 import pic2 from "../image/pic-2.png";
 import pic3 from "../image/pic-3.png";
@@ -45,7 +46,7 @@ function ReviewSection() {
                 </div>
             </div>
             <div className="content" style={{ textAlign: "center" }}>
-                <a className="btn">Give your feedback</a>
+            <NavLink to="/feedback" className="btn">Give your feedback</NavLink>
             </div>
         </section>
     );

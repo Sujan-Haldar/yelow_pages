@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import LoginIcon from "./header/LoginIcon";
 function HeaderSection() {
     return ( 
         <header className="header">
@@ -18,13 +19,7 @@ function HeaderSection() {
                 <input type="search" name="" placeholder="search here..." id="search-box"/>
                 <label for="search-box" className="fas fa-search"></label>
             </form>
-
-            <div className="icons">
-                <div id="search-btn" className="fas fa-search"></div>
-                <NavLink to="/signin">
-                    <div id="login-btn" className="fas fa-user"></div>
-                </NavLink>
-            </div>
+            <LoginIcon/>
 
         </div>
 
