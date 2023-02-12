@@ -14,6 +14,7 @@ const {
     notFoundError,
     errorHandelar,
 } = require("./middleware/common/errorHandelar");
+const auth = require("./middleware/permission/auth");
 
 //express app
 const app = express();
@@ -56,6 +57,14 @@ app.use("/users", users);
 app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
 app.use("/login", login);
+
+app.get("/verify-Login", auth, (req,res) =>{
+    console.log(req.user)
+    res.json({
+        isLogedin : true,
+        user: req.user._id
+    }) 
+});
 
 //
 

@@ -1,9 +1,9 @@
+import axios from 'axios';
 function TestHeader() {
     const x = async()=>{
-        await fetch("http://localhost:3030/getHead")
-            .then(response=>{
-                console.log(response.headers)
-            })
+        const {data} = await axios.get("http://localhost:3030/verify-Login")
+        console.log(data)
+            
     }
     return ( 
         <div>

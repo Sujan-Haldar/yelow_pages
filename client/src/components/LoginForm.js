@@ -1,18 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 function LoginForm() {
     const [username,setUserName] = useState(null)
     const [password,setPassword] = useState(null)
+    const navigate = useNavigate()
     const submitForm = async(e)=>{
-        console.log(username,password)
         e.preventDefault()
         try {
             const data = {
                 username,password
             }
-            const res = await axios.post("http://localhost:3030/login",data)
-            console.log(res)
+            await axios.post("http://localhost:3030/login",data)
+            navigate('/')
         } catch (error) {
             console.log(error) 
         }

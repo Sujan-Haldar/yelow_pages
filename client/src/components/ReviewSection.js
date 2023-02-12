@@ -7,6 +7,7 @@ import Review from "./review/Review";
 // Import Swiper React components
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import TestHeader from "./TestHeader";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 function ReviewSection() {
@@ -49,6 +50,7 @@ function ReviewSection() {
             <NavLink to="/feedback" className="btn">Give your feedback</NavLink>
             
             </div>
+            <TestHeader/>
         </section>
     );
 }
