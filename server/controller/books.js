@@ -15,6 +15,8 @@ const postBook = async (req, res) => {
         title: req.body.title,
         author: req.body.author,
         publishYear: req.body.publishYear,
+        bookDetails: req.body.bookDetails,
+        bookCondition: req.body.bookCondition,
         donatedBy: req.user._id,
     });
 

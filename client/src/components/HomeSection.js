@@ -7,10 +7,22 @@ import book3 from "../image/book-3.png";
 import book4 from "../image/book-4.png";
 import book5 from "../image/book-5.png";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function HomeSection() {
+    const [books, setBooks] = useState(null);
+    useEffect(() => {
+        async function fetchBooks() {
+            const { data } = await axios.get("http://localhost:3030/books");
+            setBooks(data);
+        }
+        fetchBooks();
+    }, []);
+
     return (
         <section className="home" id="home">
             <div className="row">
@@ -38,8 +50,15 @@ function HomeSection() {
                                 disableOnInteraction: false,
                             }}
                         >
-                            <SwiperSlide>
-                                <Book preview={book1} />
+                            {books
+                                ? books.slice(0, 5).map(book => (
+                                      <SwiperSlide>
+                                          <Book preview={getBookImgSrc(book)} />
+                                      </SwiperSlide>
+                                  ))
+                                : null}
+                            {/* <SwiperSlide>
+                                <Book preview={getBookImgSrc(books[0])} />
                             </SwiperSlide>
                             <SwiperSlide>
                                 <Book preview={book2} />
@@ -52,7 +71,7 @@ function HomeSection() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <Book preview={book5} />
-                            </SwiperSlide>
+                            </SwiperSlide> */}
                         </Swiper>
                     </div>
                     <img src={stand} className="stand" alt="" />
@@ -61,5 +80,9 @@ function HomeSection() {
         </section>
     );
 }
+
+const getBookImgSrc = book => {
+    return `http://localhost:3030/bookimage/${book.previewImgSrc}`;
+};
 
 export default HomeSection;

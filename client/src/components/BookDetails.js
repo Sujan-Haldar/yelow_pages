@@ -6,24 +6,25 @@ import BookImage from "./bookDetails/BookImage";
 import OtherBookDetails from "./bookDetails/OtherBookDetails";
 function BookDetails() {
     const params = useParams();
-    console.log(params._id)
-    const [book,setBook] = useState(null);
-    useEffect(()=>{
-        async function getBookDetails(){
-            const {data} = await axios.get(`http://localhost:3030/books/${params._id}`)
-            setBook(data)
+    // console.log(params._id)
+    const [book, setBook] = useState(null);
+    useEffect(() => {
+        async function getBookDetails() {
+            const { data } = await axios.get(
+                `http://localhost:3030/books/${params._id}`
+            );
+            setBook(data);
         }
         getBookDetails();
-        
-    },[params._id])
-    if (book){
-        console.log(book)
-        return ( 
+    }, [params._id]);
+    if (book) {
+        const src = `http://localhost:3030/bookimage/${book.previewImgSrc}`;
+        return (
             <div class="bookdetails">
-                <BookImage image = {book.previewImgSrc}/>
-                <OtherBookDetails book = {book}/>
+                <BookImage src={src} />
+                <OtherBookDetails book={book} />
             </div>
-         );
+        );
     }
 }
 
