@@ -58,12 +58,12 @@ app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
 app.use("/login", login);
 
-app.get("/verify-Login", auth, (req,res) =>{
-    console.log(req.user)
+app.get("/verify-Login", auth, (req, res) => {
+    console.log(req.user);
     res.json({
-        isLogedin : true,
-        user: req.user._id
-    }) 
+        isLogedin: true,
+        user: req.user._id,
+    });
 });
 
 //

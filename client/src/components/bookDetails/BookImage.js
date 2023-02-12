@@ -1,9 +1,9 @@
-function BookImage({image}) {
-    return ( 
+function BookImage({ src }) {
+    return (
         <div class="bookdetails1">
-            <img src={image} alt="Book Image"/>
+            <img src={src} alt="Book" />
         </div>
-     );
+    );
 }
 
 export default BookImage;
