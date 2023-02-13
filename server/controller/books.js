@@ -20,7 +20,7 @@ const postBook = async (req, res) => {
         donatedBy: req.user._id,
     });
 
-    if (req.files) book.previewImgSrc = req.files[0].filename;
+    if (req.files.length > 0) book.previewImgSrc = req.files[0].filename;
 
     await book.save();
     res.send(book);

@@ -1,5 +1,4 @@
 // import { NavLink } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
 import donatebookLogo from "../image/donatebook.png";
 import InputTypeFile from "./fromElement/InputTypeFile";
@@ -7,8 +6,9 @@ import InputTypeSelect from "./fromElement/InputTypeSelect";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
 // import PreviewImage from "./fromElement/PreviewImage";
+import { ToastContainer } from "react-toastify";
+import mainSubmitForm from "../hook/useForm";
 import { headers } from '../hook/useLogin';
-// import { getHeaderFromLocalStorage } from '../hook/useLogin';
 function BookDonationForm() {
     const [bookName,setBookName] = useState("");
     const [authorName,setAuthorName] = useState("");
@@ -16,30 +16,23 @@ function BookDonationForm() {
     const [bookCondition,setBookCondition] = useState("Poor");
     const [publishYear,setPublishYear] = useState(null)
     const [bookImg,setBookImg] = useState(null)
-    const submitForm = async(e)=>{
+    
+    const submitForm = (e)=>{
         e.preventDefault()
-        const x = headers()
-        console.log(x)
+        const header = headers()
+        header["Content-Type"] ="multipart/form-data"
         
-        try {
-            const formData = new FormData();
+        const formData = new FormData();
             formData.append("title", bookName);
             formData.append("author", authorName);
             formData.append("publishYear", publishYear);
+            formData.append("bookCondition",bookCondition);
+            formData.append("bookDetails",bookDetails)
             formData.append("file", bookImg);
-            // const obj = {
-            //     title:bookName,author:authorName,publishYear
-            // }
-            const value = [...formData.entries()]
-            console.log(value)
-            const res = await axios.post("http://localhost:3030/books",formData,x)
-            console.log(res)
-        } catch (error) {
-            console.log(error) 
-        }
-        
+            mainSubmitForm("http://localhost:3030/books",formData,header)
 
     }
+
     return ( 
         <div className="login-form-container">
         <form action="" onSubmit={submitForm}>
@@ -61,7 +54,7 @@ function BookDonationForm() {
             {/* <PreviewImage file = {URL.createObjectURL(bookImg)}/> */}
             <InputTypeSubmit value="Donate"/>
         </form>
-
+        <ToastContainer/>
     </div>
  );
 }
