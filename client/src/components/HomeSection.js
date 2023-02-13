@@ -1,14 +1,11 @@
 import Book from "./homesection/book";
 
 import stand from "../image/stand.png";
-import book1 from "../image/book-1.png";
-import book2 from "../image/book-2.png";
-import book3 from "../image/book-3.png";
-import book4 from "../image/book-4.png";
-import book5 from "../image/book-5.png";
+
+import getBookImg from "./bookRequests/getBookImg";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import getAllBooks from "./bookRequests/getAllBooks";
 
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,7 +14,7 @@ function HomeSection() {
     const [books, setBooks] = useState(null);
     useEffect(() => {
         async function fetchBooks() {
-            const { data } = await axios.get("http://localhost:3030/books");
+            const { data } = await getAllBooks();
             setBooks(data);
         }
         fetchBooks();
@@ -53,36 +50,17 @@ function HomeSection() {
                             {books
                                 ? books.slice(0, 5).map(book => (
                                       <SwiperSlide>
-                                          <Book preview={getBookImgSrc(book)} />
+                                          <Book book={book} />
                                       </SwiperSlide>
                                   ))
                                 : null}
-                            {/* <SwiperSlide>
-                                <Book preview={getBookImgSrc(books[0])} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book2} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book3} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book4} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book5} />
-                            </SwiperSlide> */}
                         </Swiper>
                     </div>
-                    <img src={stand} className="stand" alt="" />
+                    <img src={stand} className="stand" alt="stand" />
                 </div>
             </div>
         </section>
     );
 }
-
-const getBookImgSrc = book => {
-    return `http://localhost:3030/bookimage/${book.previewImgSrc}`;
-};
 
 export default HomeSection;
