@@ -19,7 +19,6 @@ function Registration() {
             const data = {
                 gender,name,email,password,phone,address
             }
-            console.log(data)
             mainSubmitForm("http://localhost:3030/users",data,false)
 
         } catch (error) {

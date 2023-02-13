@@ -1,17 +1,18 @@
-import axios from "axios";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import mainSubmitForm from "../../hook/useForm";
 function ReviewForm() {
-    const [rating,setRating] = useState(null)
+    const [rating,setRating] = useState(1)
     const [content,setContent] = useState(null)
-    const reviewSubmit = async (e)=>{
+    const reviewSubmit = (e)=>{
         try {
             e.preventDefault()
             const data = {
                 rating,
                 content
             }
-            const res = await axios.post("http://localhost:3030/reviews",data)
-            console.log(res)
+            console.log(data)
+            mainSubmitForm("http://localhost:3030/reviews",data,true)
         } catch (error) {
             console.log(error)
         }
@@ -40,7 +41,7 @@ function ReviewForm() {
                     <input type="submit" value="Submit" class="btn"/>
 
             </form>
-    
+            <ToastContainer/>
         </div>
 
      );
