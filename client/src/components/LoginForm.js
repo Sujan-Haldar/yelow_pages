@@ -1,48 +1,40 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { setHeaderAtLocalStorage } from "../hook/useLogin";
-// import { showFailureToast, showSucessToast } from "../hook/useToast";
+// eslint-disable-next-line no-unused-vars
+import { showFailureToast, showSucessToast } from "../hook/useToast";
 function LoginForm() {
     const [username,setUserName] = useState(null)
     const [password,setPassword] = useState(null)
     const navigate = useNavigate()
     const toastId = useRef(null)
+
     const submitForm = async(e)=>{
-        toastId.current = toast.loading("Please Wait...")
+        // toastId.current = toast.loading("Please Wait...")
         e.preventDefault()
         try {
             const data = {
                 username,password
             }
-            
             const res = await axios.post("http://localhost:3030/login",data)
-            // showSucessToast(res)
-            toast.update(toastId.current, {
-                render: res.data.message,
-                type: "success",
-                isLoading: false
-            })
             if(res.data.token){
                 setHeaderAtLocalStorage(res.data.token)
                 setTimeout(() => {
                     navigate(-1)
                 }, 1000);
             }
+            showSucessToast(res)
+            // updateLoadingSucessToast(toastId,res)
 
         } catch (error) {
-            // showFailureToast(error) 
-            toast.update(toastId.current, {
-                render: error.response.data.message,
-                type: "error",
-                isLoading: false
-            })
+            showFailureToast(error) 
+            // updateLoadingFailureToast(toastId,error)
         }
         
 
     }
-
     return ( 
             <div className="login-form-container">
             <form action="" onSubmit={submitForm}>

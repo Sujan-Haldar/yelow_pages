@@ -29,7 +29,7 @@ function BookDonationForm() {
             formData.append("bookCondition",bookCondition);
             formData.append("bookDetails",bookDetails)
             formData.append("file", bookImg);
-            mainSubmitForm("http://localhost:3030/books",formData,header)
+            mainSubmitForm("http://localhost:3030/books",formData,true,header)
 
     }
 
@@ -39,13 +39,13 @@ function BookDonationForm() {
             <img src={donatebookLogo} alt="Check your internet" width="100px" style={{"display": "block", "margin": "auto"}}/>
             <h3>Donate Books</h3><br/>
 
-            <InputTypeText inputName ="Book Name" type="text" name="" placeholder="enter Book name" required={true} id="" value = {bookName} setValue = {setBookName}/>
+            <InputTypeText inputName ="Book Name" type="text" placeholder="enter Book name" required={true} id="" value = {bookName} setValue = {setBookName}/>
 
-            <InputTypeText inputName ="Author Name" type="text" name="" placeholder="enter author name" required={true} id="" value = {authorName} setValue= {setAuthorName}/>
+            <InputTypeText inputName ="Author Name" type="text" placeholder="enter author name" required={true} id="" value = {authorName} setValue= {setAuthorName}/>
 
-            <InputTypeText inputName ="Book Details" type="text" name="" placeholder="enter book details" required={true} id="" value={bookDetails} setValue={setBookDetails}/>
+            <InputTypeText inputName ="Book Details" type="text" placeholder="enter book details" required={true} id="" value={bookDetails} setValue={setBookDetails}/>
 
-            <InputTypeText inputName ="Publish Year" type="text" name="" placeholder="publish year" required={true} id="" value={publishYear} setValue={setPublishYear}/>
+            <InputTypeText inputName ="Publish Year" type="text" placeholder="publish year" required={true} id="" value={publishYear} setValue={setPublishYear}/>
 
             <InputTypeSelect value = {bookCondition} setValue = {setBookCondition}/>
 
