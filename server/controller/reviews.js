@@ -13,6 +13,7 @@ const getReview = async (req, res) => {
 const postReview = async (req, res) => {
     const review = new Review({
         user: req.user._id,
+        rating: req.body.rating,
         content: req.body.content,
     });
 

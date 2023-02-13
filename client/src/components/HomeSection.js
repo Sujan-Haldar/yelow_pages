@@ -2,8 +2,6 @@ import Book from "./homesection/book";
 
 import stand from "../image/stand.png";
 
-import getBookImg from "./bookRequests/getBookImg";
-
 import { useEffect, useState } from "react";
 import getAllBooks from "./bookRequests/getAllBooks";
 

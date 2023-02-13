@@ -4,20 +4,21 @@ import { useEffect, useState } from "react";
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
 
-    // const [donor, setDonor] = useState(null);
-    // useEffect(() => {
-    //     const getDonor = async () => {
-    //         const { data } = await getUser(book.donatedBy);
-    //         setDonor(data);
-    //     };
-    //     getDonor();
-    // }, [book.donatedBy]);
+    const [donor, setDonor] = useState(null);
+    useEffect(() => {
+        const getDonor = async () => {
+            setDonor(await getUser(book.donatedBy));
+        };
+        getDonor();
+    }, [book.donatedBy]);
 
-    const email = "abc@gmail.com";
-    const address = "Batanagar";
+    let email = "Not Provided";
+    let address = "Unknown";
 
-    // const { email, address } = donor;
-    // console.log(address);
+    if (donor) {
+        email = donor.email;
+        address = donor.address;
+    }
 
     return (
         <div class="bookdetails2">
