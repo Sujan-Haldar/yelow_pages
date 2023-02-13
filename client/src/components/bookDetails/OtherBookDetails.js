@@ -1,5 +1,24 @@
+import getUser from "../userRequests/getUser";
+import { useEffect, useState } from "react";
+
 function OtherBookDetails({ book }) {
-    const { title, author } = book;
+    const { title, author, bookDetails, bookCondition } = book;
+
+    // const [donor, setDonor] = useState(null);
+    // useEffect(() => {
+    //     const getDonor = async () => {
+    //         const { data } = await getUser(book.donatedBy);
+    //         setDonor(data);
+    //     };
+    //     getDonor();
+    // }, [book.donatedBy]);
+
+    const email = "abc@gmail.com";
+    const address = "Batanagar";
+
+    // const { email, address } = donor;
+    // console.log(address);
+
     return (
         <div class="bookdetails2">
             <form action="">
@@ -16,20 +35,20 @@ function OtherBookDetails({ book }) {
                         Book Details :-
                     </span>
                 </b>
-                <div>{book.bookDetails}</div>
+                <div>{bookDetails}</div>
                 <b>
                     <br />
                     <span class="bookdet" style={{ color: "#d4911f" }}>
                         Book Condition :-
                     </span>
                 </b>
-                <span>{book.bookCondition}</span>
+                <span>{bookCondition}</span>
                 <b>
                     <br />
                     <b />
                     <span style={{ color: "#d4911f" }}>Email :-</span>
                 </b>
-                <span>{book.email}</span>
+                <span>{email}</span>
                 <b>
                     <br />
                     <br />
@@ -42,7 +61,7 @@ function OtherBookDetails({ book }) {
                     <br />
                     <span style={{ color: "#d4911f" }}> Address :-</span>
                 </b>
-                <span>Batanagar</span>
+                <span>{address}</span>
 
                 <br />
                 <br />
