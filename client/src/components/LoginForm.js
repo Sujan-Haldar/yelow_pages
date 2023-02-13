@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { setHeaderAtLocalStorage } from "../hook/useLogin";
 function LoginForm() {
     const [username,setUserName] = useState(null)
     const [password,setPassword] = useState(null)
@@ -11,8 +12,13 @@ function LoginForm() {
             const data = {
                 username,password
             }
-            await axios.post("http://localhost:3030/login",data)
-            navigate('/')
+            const res = await axios.post("http://localhost:3030/login",data)
+            
+            console.log(res)
+            if(res.data.token){
+                setHeaderAtLocalStorage(res.data.token)
+                navigate('/')
+            }
         } catch (error) {
             console.log(error) 
         }
