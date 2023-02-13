@@ -1,27 +1,58 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import mainSubmitForm from "../hook/useForm";
+import InputTypeSubmit from "./fromElement/InputTypeSubmit";
+import InputTypeText from "./fromElement/InputTypeText";
+import InputTypeTextarea from "./fromElement/InputTypeTextarea";
 function Registration() {
+    const [name,setName] = useState(null);
+    const [email,setEmail] = useState(null);
+    const [password,setPassword] = useState(null);
+    const [gender,setgender] = useState();
+    const [phone,setPhone] = useState(null);
+    const [address,setAddress] = useState(null);
+
+    const submitFrom =(e)=>{
+        e.preventDefault();
+        try {
+            const data = {
+                gender,name,email,password,phone,address
+            }
+            console.log(data)
+            mainSubmitForm("http://localhost:3030/users",data,false)
+
+        } catch (error) {
+            
+        }
+    }
     return ( 
         <div className="login-form-container">
-        <form action="">
+        <form action="" onSubmit={submitFrom}>
             <h3>Create an Account</h3>
-            <b><span>Name *</span></b>
-            <input type="Name" name="" className="box" placeholder="enter your name" required id=""/>
-            <b><span>Mobile Number *</span></b>
-            <input type="tel" name="" className="box" placeholder="enter your number" pattern="[0-9]{0,10}" required id=""/>
-            <b><span>Email *</span></b>
-            <input type="email" name="" className="box" placeholder="enter your email" required id=""/>
-            <b><span>Address *</span></b>
-            <input type="text" name="" className="box" placeholder="enter your address" required id=""/>
-            <b><span>password *</span></b>
-            <input type="password" name="" className="box" placeholder="enter your password" required id=""/>
-            <div className="checkbox">
-                <input type="checkbox" name="" id="remember-me"/>
-                <label for="remember-me"> remember me</label>
+
+            <InputTypeText inputName ="Name" type="text" placeholder="enter your name" required={true} id="" value = {name} setValue = {setName}/>
+
+            <InputTypeText inputName ="Mobile Number" type="tel" placeholder="enter your number" required={false} id="" value = {phone} setValue = {setPhone}/>
+
+            <InputTypeText inputName ="Email" type="email" placeholder="enter your email" required={true} id="" value = {email} setValue = {setEmail}/>
+            
+            <InputTypeTextarea inputName ="Address" placeholder="enter your address" required={true} id="" value = {address} setValue = {setAddress}/>
+
+            <InputTypeText inputName ="password" type="password" placeholder="enter your password" required={true} id="" value = {password} setValue = {setPassword}/>
+            
+            <b><span>Gender *</span></b>
+            <div onChange={(e)=>setgender(e.target.value)}>
+                    <input type="radio" value="Male" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Male</span>
+                    <input type="radio" value="Female" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Female</span>
+                    <input type="radio" value="Other" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Other</span>
             </div>
-            <input type="submit" value="Create" className="btn"/>
+        
+            <InputTypeSubmit value="Create"/>
+
             <p>have an account ? <NavLink to="/signin">sign in</NavLink></p>
         </form>
-
+        <ToastContainer/>
     </div>
      );
 }

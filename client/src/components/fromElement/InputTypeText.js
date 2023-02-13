@@ -1,5 +1,5 @@
 
-function InputTypeText({inputName,type,placeholder,required,value,setValue,e}) {
+function InputTypeText({inputName,type,placeholder,required,value,setValue}) {
     if(required) {
         inputName = `${inputName} *`
     }
