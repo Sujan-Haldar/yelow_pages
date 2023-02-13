@@ -26,7 +26,10 @@ const postUser = async (req, res) => {
         password: hash,
         isAdmin: req.body.isAdmin,
         address: req.body.address,
-        profilePicSrc: req.body.profilePicSrc,
+        profilePicSrc:
+            req.body.gender === "female"
+                ? "https://img.favpng.com/5/1/21/computer-icons-user-profile-avatar-female-png-favpng-cqykKc0Hpkh65ueWt6Nh2KFvS.jpg"
+                : "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png",
     });
 
     const wishlist = new Wishlist({

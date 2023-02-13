@@ -7,6 +7,11 @@ const reviewSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
+    rating: {
+        type: Number,
+        required: true,
+        default: 1,
+    },
     content: {
         type: String,
         required: true,
