@@ -41,6 +41,10 @@ app.use(
     "/bookimage",
     express.static(path.join(__dirname, "public/uploads/bookImage/"))
 );
+app.use(
+    "/default_images",
+    express.static(path.join(__dirname, "public/uploads/default_images/"))
+);
 
 //
 

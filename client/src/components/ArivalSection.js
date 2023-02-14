@@ -16,8 +16,11 @@ function ArivalSection() {
     }, []);
 
     if (books) {
-        const firstHalf = books.slice(0, books.length / 2);
-        const secondHalf = books.slice(books.length / 2, books.length);
+        const newest = books
+            .slice(Math.abs(books.length - 14), books.length)
+            .reverse();
+        const firstHalf = newest.slice(0, newest.length / 2);
+        const secondHalf = newest.slice(newest.length / 2, newest.length);
 
         return (
             <section className="arrivals" id="arrivals">

@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import getUser from "../userRequests/getUser";
 import _ from "lodash";
+import getProfilePic from "../userRequests/getProfilePic";
 
 const Review = ({ review }) => {
-    // const user = await getUser(review.user);
-
     const [user, setUser] = useState(null);
     useEffect(() => {
         const getDonor = async () => {
@@ -21,8 +20,8 @@ const Review = ({ review }) => {
             <img
                 src={
                     user
-                        ? user.profilePicSrc
-                        : "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png"
+                        ? getProfilePic(user)
+                        : "http://localhost:3030/default_images/man.png"
                 }
                 alt="Profile Pic"
             />

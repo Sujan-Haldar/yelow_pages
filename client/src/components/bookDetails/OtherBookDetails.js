@@ -48,16 +48,10 @@ function OtherBookDetails({ book }) {
                 <span>{bookCondition}</span>
                 <b>
                     <br />
-                    <b />
+                    <br />
                     <span style={{ color: "#d4911f" }}>Email :-</span>
                 </b>
                 <span>{email}</span>
-                <b>
-                    <br />
-                    <br />
-                    <span style={{ color: "#d4911f" }}>Mobile Number :-</span>
-                </b>
-                <span>{phone}</span>
 
                 <b>
                     <br />
