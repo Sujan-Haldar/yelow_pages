@@ -18,8 +18,12 @@ export function headers(){
 }
 
 export async function authentication(){
-    const {data} = await axios.get("http://localhost:3030/verify-Login",headers())
-    return  data;
+    try {
+        const {data} = await axios.get("http://localhost:3030/verify-Login",headers())
+        return  data;
+    } catch (error) {
+        
+    }
 }
 
 

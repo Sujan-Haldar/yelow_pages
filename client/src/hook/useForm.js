@@ -11,6 +11,7 @@ export default async function mainSubmitForm(
 ) {
     try {
         if (isHeaderNeeded) {
+            // console.log(headers)
             const res = await axios.post(url, data, headers);
             if (res) {
                 showSucessToast(res);
