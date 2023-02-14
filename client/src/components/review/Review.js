@@ -28,6 +28,10 @@ const Review = ({ review }) => {
             />
             <h3>{user ? user.name : "Unknown"}</h3>
             <p>{review.content}</p>
+            <p>
+                Published On :{" "}
+                <time>{new Date(review.publishedTime).toLocaleString()}</time>
+            </p>
             <div className="stars">
                 {stars.map(ele => (
                     <i key={ele} className="fa fa-star"></i>

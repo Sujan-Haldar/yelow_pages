@@ -24,7 +24,6 @@ const postUser = async (req, res) => {
         gender: req.body.gender,
         phone: req.body.phone,
         password: hash,
-        isAdmin: req.body.isAdmin,
         address: req.body.address,
         profilePicSrc:
             req.body.gender === "female"

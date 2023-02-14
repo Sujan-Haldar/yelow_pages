@@ -1,7 +1,7 @@
 const { Review } = require("../models/review");
 
 const getAllReviews = async (req, res) => {
-    res.send(await Review.find());
+    res.send(await Review.find().sort({ publishedTime: -1 }));
 };
 
 const getReview = async (req, res) => {
