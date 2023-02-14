@@ -1,13 +1,14 @@
 // import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import donatebookLogo from "../image/donatebook.png";
 import InputTypeFile from "./fromElement/InputTypeFile";
 import InputTypeSelect from "./fromElement/InputTypeSelect";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
-// import PreviewImage from "./fromElement/PreviewImage";
 import mainSubmitForm from "../hook/useForm";
 import { headers } from "../hook/useLogin";
+
 function BookDonationForm() {
     const [bookName, setBookName] = useState("");
     const [authorName, setAuthorName] = useState("");
@@ -29,6 +30,8 @@ function BookDonationForm() {
         formData.append("bookDetails", bookDetails);
         formData.append("file", bookImg);
         mainSubmitForm("http://localhost:3030/books", formData, true, header);
+
+        <Navigate to="/" />;
     };
 
     return (
@@ -46,7 +49,7 @@ function BookDonationForm() {
                 <InputTypeText
                     inputName="Book Name"
                     type="text"
-                    placeholder="enter Book name"
+                    placeholder="Enter Book name"
                     required={true}
                     id=""
                     value={bookName}
@@ -56,7 +59,7 @@ function BookDonationForm() {
                 <InputTypeText
                     inputName="Author Name"
                     type="text"
-                    placeholder="enter author name"
+                    placeholder="Enter author name"
                     required={true}
                     id=""
                     value={authorName}
@@ -66,7 +69,7 @@ function BookDonationForm() {
                 <InputTypeText
                     inputName="Book Details"
                     type="text"
-                    placeholder="enter book details"
+                    placeholder="Enter book details"
                     required={true}
                     id=""
                     value={bookDetails}
@@ -76,7 +79,7 @@ function BookDonationForm() {
                 <InputTypeText
                     inputName="Publish Year"
                     type="text"
-                    placeholder="publish year"
+                    placeholder="Publish year"
                     required={true}
                     id=""
                     value={publishYear}

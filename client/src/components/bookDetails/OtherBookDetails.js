@@ -14,10 +14,12 @@ function OtherBookDetails({ book }) {
 
     let email = "Not Provided";
     let address = "Unknown";
+    let phone = "Not Provided";
 
     if (donor) {
         email = donor.email;
         address = donor.address;
+        phone = donor.phone;
     }
 
     return (
@@ -55,7 +57,7 @@ function OtherBookDetails({ book }) {
                     <br />
                     <span style={{ color: "#d4911f" }}>Mobile Number :-</span>
                 </b>
-                <span>9564714174</span>
+                <span>{phone}</span>
 
                 <b>
                     <br />

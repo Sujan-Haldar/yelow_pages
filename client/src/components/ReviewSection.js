@@ -18,8 +18,6 @@ function ReviewSection() {
         fetchReviews();
     }, []);
 
-    console.log("all Reviews:", reviews);
-
     if (reviews) {
         return (
             <section className="reviews" id="reviews">

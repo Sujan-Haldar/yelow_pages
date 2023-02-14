@@ -40,7 +40,9 @@ const postUser = async (req, res) => {
     await wishlist.save();
     await user.save();
 
-    res.send(user);
+    const token = await user.generateAuthToken();
+
+    res.json({ user, token });
 };
 
 const deleteUser = async (req, res) => {

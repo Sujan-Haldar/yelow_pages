@@ -1,6 +1,7 @@
 import Book from "./homesection/book";
 
 import stand from "../image/stand.png";
+import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import getAllBooks from "./bookRequests/getAllBooks";
@@ -22,14 +23,16 @@ function HomeSection() {
         <section className="home" id="home">
             <div className="row">
                 <div className="content">
-                    <h3>upto 75% off</h3>
-                    <p>
-                        Whatever The Cost of Our Libraries,The Price Is Cheaper
-                        Compared To That Of An Ignorant Nation
-                    </p>
-                    <a href="# " className="btn">
+                    <h1>
+                        " It's not how much we give, but how much love we put
+                        into giving."
+                    </h1>
+                    <span>- Mother Teresa</span>
+                    <br />
+                    <br />
+                    <Link to="/bookdonationform" class="btn">
                         donate
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="swiper books-slider">
