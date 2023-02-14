@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import mainSubmitForm from "../hook/useForm";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
@@ -51,7 +50,7 @@ function Registration() {
 
             <p>have an account ? <NavLink to="/signin">sign in</NavLink></p>
         </form>
-        <ToastContainer/>
+        
     </div>
      );
 }
