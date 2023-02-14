@@ -6,7 +6,7 @@ export function showSucessToast(res, msg = "Operation is sucessfull") {
 }
 
 export function showFailureToast(error, msg = "Operation is not sucessfull") {
-    const message = error.response.data.message || error.message;
+    const message = error.response.data.message ? error.response.data.message : error.message ? error.message : msg;
     return toast.error(message);
 }
 
