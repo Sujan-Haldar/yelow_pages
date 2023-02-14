@@ -14,9 +14,9 @@ function Book({ book }) {
             </div>
             <div className="content">
                 <h3>{book.title}</h3>
-                <div className="price">
+                {/* <div className="price">
                     $0 <span>$20.99</span>
-                </div>
+                </div> */}
                 <a href="#" className="btn">
                     Contact
                 </a>

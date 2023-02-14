@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
 :root {
   --green: #d4911f;
   --dark-color: #53391c;
@@ -561,12 +563,14 @@ section {
   flex: 1 1 42rem;
 }
 
+/* ardchanged */
 .deal .image {
   flex: 1 1 42rem;
+  text-align: right;
 }
-
+/* ardchanged */
 .deal .image img {
-  width: 100%;
+  width: 60%;
 }
 
 .deal .content h3 {
@@ -575,11 +579,22 @@ section {
   padding-bottom: 0.5rem;
 }
 
-.deal .content h1 {
-  color: var(--black);
+/* ardchanged */
+.deal .content h1,
+.home .content h1 {
+  color: rgb(53, 53, 53);
   font-size: 4rem;
+  font-family: "Caveat", cursive;
 }
 
+.deal .content span,
+.home .content span {
+  color: rgb(53, 53, 53);
+  float: right;
+  margin-right: 2rem;
+  font-size: 2.7rem;
+  font-family: "Caveat";
+}
 .deal .content p {
   padding: 1rem 0;
   color: var(--light-color);

@@ -18,6 +18,7 @@ function App() {
                 draggable={true}
                 progress={undefined}
                 theme={"colored"}
+                style={{ scale: "1.2" }}
             />
             <HeaderSection />
             <RouteComponent />
