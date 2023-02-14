@@ -1,4 +1,6 @@
-import axios from "axios"
+import { isExpired } from "react-jwt"
+
+import { showFailureToast } from "./useToast"
 export function setHeaderAtLocalStorage(token){
     localStorage.setItem(
         "auth-token" ,token
@@ -17,12 +19,11 @@ export function headers(){
     }
 }
 
-export async function authentication(){
+export function authentication(){
     try {
-        const {data} = await axios.get("http://localhost:3030/verify-Login",headers())
-        return  data;
+        return !isExpired(getHeaderFromLocalStorage())
     } catch (error) {
-        
+        showFailureToast(error)
     }
 }
 

@@ -6,6 +6,7 @@ import BookDonationForm from "./BookDonationForm";
 import ForgetPassword from "./ForgetPassword";
 import LoginForm from "./LoginForm";
 import Mydetails from "./Mydetails";
+import OutletComponent from "./OutletComponent";
 import PageNotFound from "./PageNotFound";
 import Registration from "./Registration";
 import ReviewForm from "./review/ReviewForm";
@@ -21,11 +22,14 @@ function RouteComponent() {
             <Route path = "/forget_pasword" element = {<ForgetPassword/>} ></Route>
             <Route path = "/books" element = {<AllBooks/>} ></Route>
 
-            <Route path = "/bookdonationform" element = {<BookDonationForm/>} ></Route>
-            
+            <Route path="/*" element={<OutletComponent/>}>
+                <Route path="bookdonationform" element={<BookDonationForm/>}/>
+                <Route path ="feedback" element={<ReviewForm/>}></Route>
+            </Route>
+
+
             <Route path = "/about_us" element = {<AboutUs/>} ></Route>
             <Route path ="/books/:_id" element={<BookDetails/>}></Route>
-            <Route path ="/feedback" element={<ReviewForm/>}></Route>
             <Route path ="/myprofile" element={<Mydetails/>}></Route>
             <Route path ="*" element={<PageNotFound/>}></Route>
             

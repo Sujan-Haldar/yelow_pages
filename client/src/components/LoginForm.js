@@ -18,7 +18,6 @@ function LoginForm() {
                 password,
             };
             const res = await axios.post("http://localhost:3030/login", data);
-            
             if (res.data.token) {
                 setHeaderAtLocalStorage(res.data.token);
                 setTimeout(() => {
