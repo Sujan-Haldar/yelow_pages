@@ -1,14 +1,13 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { setHeaderAtLocalStorage } from "../hook/useLogin";
-// eslint-disable-next-line no-unused-vars
 import { showFailureToast, showSucessToast } from "../hook/useToast";
 function LoginForm() {
     const [username, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
     const navigate = useNavigate();
-    const toastId = useRef(null);
+    // const toastId = useRef(null);
 
     const submitForm = async e => {
         // toastId.current = toast.loading("Please Wait...")
@@ -19,6 +18,7 @@ function LoginForm() {
                 password,
             };
             const res = await axios.post("http://localhost:3030/login", data);
+            
             if (res.data.token) {
                 setHeaderAtLocalStorage(res.data.token);
                 setTimeout(() => {
