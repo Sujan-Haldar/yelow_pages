@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Button from "../common/button";
 import DeleteBook from "../bookRequests/deleteBook";
 import { getToken } from "../../hook/useLogin";
+import AddToWishlist from "../bookRequests/addToWishlist";
 
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
@@ -26,6 +27,8 @@ function OtherBookDetails({ book }) {
         id = donor._id;
         // phone = donor.phone;
     }
+
+    const currentUser = getToken();
 
     return (
         <div class="bookdetails2">
@@ -65,21 +68,24 @@ function OtherBookDetails({ book }) {
                 <span>{address}</span>
                 <br />
                 <br />
-                <input
-                    type="submit"
-                    value="Add To Wishlist"
-                    class="btn"
-                    style={{ "text-align": "center", margin: "1rem" }}
-                />
-                <input type="submit" value="Contact" class="btn" />
-                {getToken()._id === id ? (
+                <br />
+                <br />
+                {currentUser && currentUser._id === id ? (
                     <Button
                         lable="Delete"
-                        onClick={() => {
-                            DeleteBook(book);
-                        }}
+                        className="btn-danger"
+                        onClick={() => DeleteBook(book)}
                     />
-                ) : null}
+                ) : (
+                    <>
+                        <Button
+                            lable="Add To Wishlist"
+                            className="btn-primary"
+                            onClick={() => AddToWishlist(book)}
+                        />
+                        <Button lable="Contact" className="btn-primary" />
+                    </>
+                )}
             </form>
             <br />
         </div>

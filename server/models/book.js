@@ -41,7 +41,6 @@ const bookSchema = new mongoose.Schema({
     donatedOn: {
         type: Date,
         require: true,
-        default: Date.now(),
     },
     previewImgSrc: {
         type: String,

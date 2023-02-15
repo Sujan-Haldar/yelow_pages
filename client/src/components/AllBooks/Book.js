@@ -1,11 +1,16 @@
 import { NavLink } from "react-router-dom";
+import AddToWishlist from "../bookRequests/addToWishlist";
 import getBookImg from "../bookRequests/getBookImg";
 import getBookPageLink from "../bookRequests/getBookPageLink";
 function Book({ book }) {
     return (
         <div className="swiper-slide box">
             <div className="icons">
-                <a href="#" className="fas fa-heart"></a>
+                <a
+                    href="#"
+                    onClick={() => AddToWishlist(book)}
+                    className="fas fa-heart"
+                ></a>
             </div>
             <div className="image">
                 <NavLink to={getBookPageLink(book)}>

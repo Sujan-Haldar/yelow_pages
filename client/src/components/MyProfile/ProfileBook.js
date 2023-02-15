@@ -27,7 +27,7 @@ const ProfileBook = ({ book, onDelete }) => {
                 </div>
             </td>
             <td>
-                <Button lable="Delete" onClick={onDelete} />
+                <Button lable="Delete" onClick={() => onDelete(book)} />
             </td>
         </tr>
     );

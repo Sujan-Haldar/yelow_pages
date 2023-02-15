@@ -39,12 +39,13 @@ export function updateLoadingFailureToast(
     });
 }
 
-export function promiseToast(promise, lable) {
+export function promiseToast(promise, successMessage) {
     return toast.promise(promise, {
-        pending: `${lable} in process`,
-        success: `${lable} Successfull`,
+        pending: `Processing...`,
+        success: successMessage,
         error: {
             render({ data }) {
+                if (typeof data === "string") return data;
                 return data.response.data.message;
             },
         },

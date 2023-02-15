@@ -18,6 +18,7 @@ const postBook = async (req, res) => {
         bookDetails: req.body.bookDetails,
         bookCondition: req.body.bookCondition,
         donatedBy: req.user._id,
+        donatedOn: Date.now(),
     });
 
     if (req.files.length > 0) book.previewImgSrc = req.files[0].filename;

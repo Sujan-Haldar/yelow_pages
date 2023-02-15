@@ -90,6 +90,15 @@ section {
 
 .btn:hover {
     background: var(--dark-color);
+    box-shadow: 5px 3px 20px black;
+}
+
+.btn-danger:hover {
+    background: red;
+}
+
+.btn-primary:hover {
+    background: rgb(0, 167, 33);
 }
 
 .header .header-1 {

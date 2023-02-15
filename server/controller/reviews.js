@@ -15,6 +15,7 @@ const postReview = async (req, res) => {
         user: req.user._id,
         rating: req.body.rating,
         content: req.body.content,
+        publishedTime: Date.now(),
     });
 
     await review.save();
