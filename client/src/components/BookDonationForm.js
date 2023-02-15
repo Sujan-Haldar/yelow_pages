@@ -1,14 +1,13 @@
-// import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import mainSubmitForm from "../hook/useForm";
+import { headers } from "../hook/useLogin";
 import donatebookLogo from "../image/donatebook.png";
+import getBookPageLink from "./bookRequests/getBookPageLink";
 import InputTypeFile from "./fromElement/InputTypeFile";
 import InputTypeSelect from "./fromElement/InputTypeSelect";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
-import mainSubmitForm from "../hook/useForm";
-import { headers } from "../hook/useLogin";
-
 function BookDonationForm() {
     const [bookName, setBookName] = useState("");
     const [authorName, setAuthorName] = useState("");
@@ -16,7 +15,7 @@ function BookDonationForm() {
     const [bookCondition, setBookCondition] = useState("Poor");
     const [publishYear, setPublishYear] = useState(null);
     const [bookImg, setBookImg] = useState(null);
-
+    const navigate = useNavigate();
     const submitForm = e => {
         e.preventDefault();
         const header = headers();
@@ -29,9 +28,13 @@ function BookDonationForm() {
         formData.append("bookCondition", bookCondition);
         formData.append("bookDetails", bookDetails);
         formData.append("file", bookImg);
-        mainSubmitForm("http://localhost:3030/books", formData, true, header);
-
-        <Navigate to="/" />;
+        mainSubmitForm("http://localhost:3030/books", formData, true, header)
+        .then(({data})=>{
+            console.log(data)
+            navigate(getBookPageLink(data))
+        })
+        
+        
     };
 
     return (

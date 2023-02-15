@@ -16,6 +16,7 @@ export default async function mainSubmitForm(
             if (res) {
                 showSucessToast(res);
             }
+            return res;
         } else {
             const res = await axios.post(url, data);
             if (res) {
