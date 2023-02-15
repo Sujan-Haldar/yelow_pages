@@ -1,6 +1,11 @@
 const Button = ({ lable, onClick }) => {
     return (
-        <button type="button" onClick={onClick} class="btn">
+        <button
+            type="button"
+            onClick={onClick}
+            className="btn"
+            style={{ margin: "1rem" }}
+        >
             {lable}
         </button>
     );

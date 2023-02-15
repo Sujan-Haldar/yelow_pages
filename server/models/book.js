@@ -38,6 +38,11 @@ const bookSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
+    donatedOn: {
+        type: Date,
+        require: true,
+        default: new Date(),
+    },
     previewImgSrc: {
         type: String,
         required: true,

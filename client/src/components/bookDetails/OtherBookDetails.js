@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import Button from "../common/button";
 import { toast } from "react-toastify";
 import DeleteBook from "../bookRequests/deleteBook";
-import { useNavigate } from "react-router-dom";
+import { promiseToast } from "../../hook/useToast";
+import { getToken } from "../../hook/useLogin";
 
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
@@ -18,11 +19,13 @@ function OtherBookDetails({ book }) {
 
     let email = "Not Provided";
     let address = "Unknown";
+    let id = "Unknown";
     // let phone = "Not Provided";
 
     if (donor) {
         email = donor.email;
         address = donor.address;
+        id = donor._id;
         // phone = donor.phone;
     }
 
@@ -56,17 +59,14 @@ function OtherBookDetails({ book }) {
                     <span style={{ color: "#d4911f" }}>Email :-</span>
                 </b>
                 <span>{email}</span>
-
                 <b>
                     <br />
                     <br />
                     <span style={{ color: "#d4911f" }}> Address :-</span>
                 </b>
                 <span>{address}</span>
-
                 <br />
                 <br />
-
                 <input
                     type="submit"
                     value="Add To Wishlist"
@@ -74,7 +74,14 @@ function OtherBookDetails({ book }) {
                     style={{ "text-align": "center", margin: "1rem" }}
                 />
                 <input type="submit" value="Contact" class="btn" />
-                <Button lable="Delete" onClick={() => handleDelete(book)} />
+                {getToken()._id === id ? (
+                    <Button
+                        lable="Delete"
+                        onClick={() => {
+                            handleDelete(book);
+                        }}
+                    />
+                ) : null}
             </form>
             <br />
         </div>
@@ -82,15 +89,7 @@ function OtherBookDetails({ book }) {
 }
 
 const handleDelete = book => {
-    toast.promise(DeleteBook(book._id), {
-        pending: `Deleting ${book.title}`,
-        success: "Successfully Deleted.",
-        error: {
-            render({ data }) {
-                return data.response.data.message;
-            },
-        },
-    });
+    promiseToast(DeleteBook(book._id), "Delete");
 };
 
 export default OtherBookDetails;

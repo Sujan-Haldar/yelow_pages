@@ -67,6 +67,9 @@ const updateUser = async (req, res) => {
         passwordChanged = true;
     }
 
+    req.body.profilePicSrc =
+        req.body.gender === "female" ? "woman.png" : "man.png";
+
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     });
