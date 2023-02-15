@@ -1,5 +1,9 @@
 import getUser from "../userRequests/getUser";
 import { useEffect, useState } from "react";
+import Button from "../common/button";
+import { toast } from "react-toastify";
+import DeleteBook from "../bookRequests/deleteBook";
+import { useNavigate } from "react-router-dom";
 
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
@@ -14,12 +18,12 @@ function OtherBookDetails({ book }) {
 
     let email = "Not Provided";
     let address = "Unknown";
-    let phone = "Not Provided";
+    // let phone = "Not Provided";
 
     if (donor) {
         email = donor.email;
         address = donor.address;
-        phone = donor.phone;
+        // phone = donor.phone;
     }
 
     return (
@@ -70,10 +74,23 @@ function OtherBookDetails({ book }) {
                     style={{ "text-align": "center", margin: "1rem" }}
                 />
                 <input type="submit" value="Contact" class="btn" />
+                <Button lable="Delete" onClick={() => handleDelete(book)} />
             </form>
             <br />
         </div>
     );
 }
+
+const handleDelete = book => {
+    toast.promise(DeleteBook(book._id), {
+        pending: `Deleting ${book.title}`,
+        success: "Successfully Deleted.",
+        error: {
+            render({ data }) {
+                return data.response.data.message;
+            },
+        },
+    });
+};
 
 export default OtherBookDetails;
