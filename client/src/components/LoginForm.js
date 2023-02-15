@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { setHeaderAtLocalStorage } from "../hook/useLogin";
+import loginContext from "../context/loginContext";
+import { authentication, setHeaderAtLocalStorage } from "../hook/useLogin";
 import { showFailureToast, showSucessToast } from "../hook/useToast";
 function LoginForm() {
     const [username, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
+    const {setIsLogedin} = useContext(loginContext)
     const navigate = useNavigate();
     // const toastId = useRef(null);
 
@@ -20,6 +22,7 @@ function LoginForm() {
             const res = await axios.post("http://localhost:3030/login", data);
             if (res.data.token) {
                 setHeaderAtLocalStorage(res.data.token);
+                setIsLogedin(authentication())
                 setTimeout(() => {
                     navigate(-1);
                 }, 1000);

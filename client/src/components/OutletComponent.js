@@ -1,9 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { authentication } from "../hook/useLogin";
-function OutletComponent() {
+export function OutletComponentTrue() {
     
     return ( authentication() ? <Outlet/> : <Navigate to="/signin"/>);
     
 }
+export function OutletComponentFalse() {
+    
+    return ( !authentication() ? <Outlet/> : <Navigate to="/"/>);
+    
+}
 
-export default OutletComponent;
+// export default OutletComponent;

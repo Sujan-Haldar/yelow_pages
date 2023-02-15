@@ -5,8 +5,11 @@ import HeaderSection from "./components/HeaderSection";
 import RouteComponent from "./components/RouteComponent";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import loginContext from "./context/loginContext";
+import { useState } from "react";
+import { authentication } from "./hook/useLogin";
 function App() {
+    const [isLogedin,setIsLogedin] = useState(authentication())
     return (
         <div>
             <ToastContainer
@@ -20,9 +23,11 @@ function App() {
                 theme={"colored"}
                 style={{ scale: "1.2" }}
             />
-            <HeaderSection />
-            <RouteComponent />
-            <FooterSection />
+            <loginContext.Provider value={{isLogedin,setIsLogedin}}>
+                <HeaderSection/>
+                <RouteComponent />
+                <FooterSection />
+            </loginContext.Provider>
         </div>
         // <h1>Hello</h1>
     );

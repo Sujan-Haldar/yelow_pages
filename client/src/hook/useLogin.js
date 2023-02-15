@@ -4,7 +4,7 @@ import { showFailureToast } from "./useToast"
 export function setHeaderAtLocalStorage(token){
     localStorage.setItem(
         "auth-token" ,token
-    )
+    );
 }
 
 export function getHeaderFromLocalStorage(){
