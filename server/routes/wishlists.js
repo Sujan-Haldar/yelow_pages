@@ -12,6 +12,6 @@ const {
 router.get("/", getAllWishlists);
 router.get("/:id", getWishlist);
 router.put("/:id", updateWishlist);
-router.delete("/:id", [auth], deleteWishlist);
+router.delete("/:id", deleteWishlist);
 
 module.exports = router;

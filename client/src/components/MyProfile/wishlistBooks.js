@@ -1,34 +1,33 @@
 import { useState, useEffect } from "react";
 import { getToken } from "../../hook/useLogin";
-import getAllBooks from "../bookRequests/getAllBooks";
+import getWishlistBooks from "../bookRequests/getWishlistBooks";
 
 import "../../assets/css/userSection.css";
-import DeleteBook from "../bookRequests/deleteBook";
 import BooksSection from "../common/booksSection";
+import RemoveFromWishlist from "../bookRequests/removeFromWishlist";
 
-const DonatedBooks = () => {
+const WishlistBooks = () => {
     const [books, setBooks] = useState(null);
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const { data } = await getAllBooks();
-            setBooks(data.filter(book => book.donatedBy === getToken()._id));
+            setBooks(await getWishlistBooks(getToken()._id));
         };
         fetchBooks();
     }, []);
 
-    const handleDelete = book => {
+    const handleRemove = book => {
         setBooks(books.filter(b => b._id !== book._id));
-        DeleteBook(book);
+        RemoveFromWishlist(book);
     };
 
     return (
         <BooksSection
-            lable="Donated Books"
+            lable="My Wishlist"
             books={books}
-            onDelete={handleDelete}
+            onDelete={handleRemove}
         />
     );
 };
 
-export default DonatedBooks;
+export default WishlistBooks;

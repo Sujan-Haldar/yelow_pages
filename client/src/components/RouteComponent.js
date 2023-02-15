@@ -7,6 +7,7 @@ import ForgetPassword from "./ForgetPassword";
 import LoginForm from "./LoginForm";
 import Mydetails from "./Mydetails";
 import DonatedBooks from "./MyProfile/donatedBooks";
+import WishlistBooks from "./MyProfile/wishlistBooks";
 import { OutletComponentTrue } from "./OutletComponent";
 import PageNotFound from "./PageNotFound";
 import Registration from "./Registration";
@@ -27,12 +28,16 @@ function RouteComponent() {
             <Route path="/*" element={<OutletComponentTrue />}>
                 <Route path="bookdonationform" element={<BookDonationForm />} />
                 <Route path="feedback" element={<ReviewForm />}></Route>
+                <Route path="myprofile" element={<Mydetails />}></Route>
+                <Route
+                    path="my-donated-books"
+                    element={<DonatedBooks />}
+                ></Route>
+                <Route path="my-wishlist" element={<WishlistBooks />}></Route>
             </Route>
 
             <Route path="/about_us" element={<AboutUs />}></Route>
             <Route path="/books/:_id" element={<BookDetails />}></Route>
-            <Route path="/myprofile" element={<Mydetails />}></Route>
-            <Route path="/my-donated-books" element={<DonatedBooks />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
     );

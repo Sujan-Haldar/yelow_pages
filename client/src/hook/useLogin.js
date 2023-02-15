@@ -25,9 +25,7 @@ export function getToken() {
 }
 
 export function authentication() {
-    try {
-        return !isExpired(getHeaderFromLocalStorage());
-    } catch (error) {
-        showFailureToast(error);
-    }
+    return (
+        getHeaderFromLocalStorage() && !isExpired(getHeaderFromLocalStorage())
+    );
 }

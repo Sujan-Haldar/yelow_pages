@@ -3,7 +3,7 @@ import { headers } from "../../hook/useLogin";
 import { promiseToast } from "../../hook/useToast";
 
 const DeleteBook = book => {
-    promiseToast(handleDelete(book._id), "Delete");
+    promiseToast(handleDelete(book._id), "Successfully Deleted");
 };
 
 const handleDelete = async id => {
