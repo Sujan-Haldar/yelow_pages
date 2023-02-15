@@ -1,11 +1,9 @@
-import { promiseToast } from "../../hook/useToast";
-import DeleteBook from "../bookRequests/deleteBook";
 import getBookImg from "../bookRequests/getBookImg";
 import Button from "../common/button";
 
-const ProfileBook = ({ book }) => {
+const ProfileBook = ({ book, onDelete }) => {
     return (
-        <div>
+        <tr>
             <td>
                 <img
                     className="book_img"
@@ -13,22 +11,26 @@ const ProfileBook = ({ book }) => {
                     alt={book.title}
                 />
             </td>
-            <td style={{ width: "75%" }}>
-                <h3>Book Name :- {book.title}</h3>
-                <h3>Author Name :- {book.author}</h3>
-                <h3>
-                    Donated On :- {new Date(book.donatedOn).toLocaleString()}
-                </h3>
+            <td
+                style={{ width: "80%", textAlign: "left", paddingLeft: "9rem" }}
+            >
+                <div>
+                    <strong>Title : </strong> <span>{book.title}</span>
+                </div>
+
+                <div>
+                    <strong>Author : </strong> <span>{book.author}</span>
+                </div>
+                <div>
+                    <strong>Donated On : </strong>
+                    <span>{new Date(book.donatedOn).toLocaleString()}</span>
+                </div>
             </td>
             <td>
-                <Button lable="Delete" onClick={() => handleDelete(book)} />
+                <Button lable="Delete" onClick={onDelete} />
             </td>
-        </div>
+        </tr>
     );
-};
-
-const handleDelete = book => {
-    promiseToast(DeleteBook(book._id), "Delete");
 };
 
 export default ProfileBook;

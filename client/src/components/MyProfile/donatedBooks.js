@@ -3,6 +3,9 @@ import { getToken } from "../../hook/useLogin";
 import getAllBooks from "../bookRequests/getAllBooks";
 import ProfileBook from "./ProfileBook";
 
+import "../../assets/css/userSection.css";
+import DeleteBook from "../bookRequests/deleteBook";
+
 const DonatedBooks = () => {
     const [books, setBooks] = useState(null);
 
@@ -16,20 +19,22 @@ const DonatedBooks = () => {
 
     const currentUser = getToken();
 
-    // console.log(donatedBooks);
-    // console.log("Helo");
-
     if (books)
         return (
             <div className="admin_all2">
                 <div className="heading">
                     <span>Donated Books</span>
                 </div>
-                <table style={{ width: "fit-content", alignItems: "center" }}>
+                <table style={{ margin: "auto" }}>
                     {books.map(book => (
-                        <tr key={book._id}>
-                            <ProfileBook book={book} />
-                        </tr>
+                        <ProfileBook
+                            key={book._id}
+                            book={book}
+                            onDelete={() => {
+                                setBooks(books.filter(b => b._id !== book._id));
+                                DeleteBook(book);
+                            }}
+                        />
                     ))}
                 </table>
             </div>

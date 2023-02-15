@@ -1,9 +1,7 @@
 import getUser from "../userRequests/getUser";
 import { useEffect, useState } from "react";
 import Button from "../common/button";
-import { toast } from "react-toastify";
 import DeleteBook from "../bookRequests/deleteBook";
-import { promiseToast } from "../../hook/useToast";
 import { getToken } from "../../hook/useLogin";
 
 function OtherBookDetails({ book }) {
@@ -78,7 +76,7 @@ function OtherBookDetails({ book }) {
                     <Button
                         lable="Delete"
                         onClick={() => {
-                            handleDelete(book);
+                            DeleteBook(book);
                         }}
                     />
                 ) : null}
@@ -87,9 +85,5 @@ function OtherBookDetails({ book }) {
         </div>
     );
 }
-
-const handleDelete = book => {
-    promiseToast(DeleteBook(book._id), "Delete");
-};
 
 export default OtherBookDetails;

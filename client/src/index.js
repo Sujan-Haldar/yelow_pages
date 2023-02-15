@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "font-awesome/css/font-awesome.css";
-import "../src/assets/css/userSection.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
