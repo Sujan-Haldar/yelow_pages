@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 
-import FeaturedBook from "./featured/FeaturedBook";
+import Book from "./AllBooks/Book";
 import getAllBooks from "./bookRequests/getAllBooks";
 
 function FeaturedSection() {
@@ -45,7 +45,7 @@ function FeaturedSection() {
                         {books
                             ? books.slice(0, 7).map(book => (
                                   <SwiperSlide>
-                                      <FeaturedBook book={book} />
+                                      <Book book={book} />
                                   </SwiperSlide>
                               ))
                             : null}
