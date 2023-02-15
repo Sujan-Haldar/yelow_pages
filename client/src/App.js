@@ -1,12 +1,11 @@
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/global.css";
-// import "./assets/js/global.js";
 import FooterSection from "./components/FooterSection";
 import HeaderSection from "./components/HeaderSection";
 import RouteComponent from "./components/RouteComponent";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import loginContext from "./context/loginContext";
-import { useState } from "react";
 import { authentication } from "./hook/useLogin";
 function App() {
     const [isLogedin,setIsLogedin] = useState(authentication())
@@ -29,7 +28,6 @@ function App() {
                 <FooterSection />
             </loginContext.Provider>
         </div>
-        // <h1>Hello</h1>
     );
 }
 

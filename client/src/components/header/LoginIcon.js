@@ -3,8 +3,14 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import '../../assets/css/iconDropdown.css';
 import loginContext from "../../context/loginContext";
+import { authentication, removeHeaderFromLocalStorage } from "../../hook/useLogin";
 function LoginIcon() {
-    const {isLogedin} = useContext(loginContext)
+    const {isLogedin,setIsLogedin} = useContext(loginContext)
+    function logout(){
+        console.log('XXXXXXXXXXXXXXXXX')
+        removeHeaderFromLocalStorage()
+        setIsLogedin(authentication())
+    }
     if(isLogedin){
         // return (
         //     <div>
@@ -66,10 +72,15 @@ function LoginIcon() {
                         {/* </NavLink> */}
                 </div> 
                <div class="dropdown-content">
-                    <a href="https://blog.hubspot.com/">My Profile</a>
+                    <NavLink to="/">My Profile</NavLink>
+                    <NavLink to="/">Donated Books</NavLink>
+                    <NavLink to="/">wishlist</NavLink>
+                    <NavLink to="/" onClick={logout}>sign out</NavLink>
+                    {/* <a href="https://blog.hubspot.com/">My Profile</a>
                     <a href="https://academy.hubspot.com/">Donated Books</a>
                     <a href="https://www.youtube.com/user/hubspot">wishlist</a>
                     <a href="https://www.youtube.com/user/hubspot">sign out</a>
+                    <button>sign out</button> */}
                 </div>
             </div>
          );
