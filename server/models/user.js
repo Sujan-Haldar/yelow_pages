@@ -59,7 +59,7 @@ const validator = user => {
     const userBody = yup.object({
         name: yup.string().required().min(3).max(20),
         email: yup.string().email().required(),
-        password: yup.string().required().min(8).max(255),
+        password: yup.string().min(8).max(255),
         address: yup.string().required().min(5),
         gender: yup.string(),
         phone: yup.number().test(val => val.toString().length === 10),

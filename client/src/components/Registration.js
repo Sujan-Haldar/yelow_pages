@@ -41,9 +41,9 @@ function Registration() {
             
             <b><span>Gender *</span></b>
             <div onChange={(e)=>setgender(e.target.value)}>
-                    <input type="radio" value="Male" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Male</span>
-                    <input type="radio" value="Female" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Female</span>
-                    <input type="radio" value="Other" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Other</span>
+                    <input type="radio" value="male" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Male</span>
+                    <input type="radio" value="female" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Female</span>
+                    <input type="radio" value="other" name="gender" /> <span style={{"display" : "inline","paddingRight":"8px"}}>Other</span>
             </div>
         
             <InputTypeSubmit value="Create"/>

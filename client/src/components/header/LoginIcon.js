@@ -7,7 +7,6 @@ import { authentication, removeHeaderFromLocalStorage } from "../../hook/useLogi
 function LoginIcon() {
     const {isLogedin,setIsLogedin} = useContext(loginContext)
     function logout(){
-        console.log('XXXXXXXXXXXXXXXXX')
         removeHeaderFromLocalStorage()
         setIsLogedin(authentication())
     }
@@ -72,7 +71,7 @@ function LoginIcon() {
                         {/* </NavLink> */}
                 </div> 
                <div class="dropdown-content">
-                    <NavLink to="/">My Profile</NavLink>
+                    <NavLink to="/myprofile">My Profile</NavLink>
                     <NavLink to="/">Donated Books</NavLink>
                     <NavLink to="/">wishlist</NavLink>
                     <NavLink to="/" onClick={logout}>sign out</NavLink>
