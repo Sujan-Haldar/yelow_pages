@@ -3,11 +3,13 @@ const Wishlist = require("../models/wishlist");
 const bcrypt = require("bcrypt");
 
 const getAllUsers = async (req, res) => {
-    res.send(await User.find());
+    res.send(await User.find().select("-password"));
 };
 
 const getUser = async (req, res) => {
-    const user = await User.findOne({ _id: req.params.id });
+    const user = await User.findOne({ _id: req.params.id }).select(
+        "-password -isAdmin"
+    );
     if (!user) return res.status(404).send("User Not Found!");
     res.send(user);
 };
@@ -57,7 +59,10 @@ const updateUser = async (req, res) => {
     }
 
     let passwordChanged = false;
-    if (!(await User.findOne({ password: req.body.password }))) {
+    if (
+        req.body.password &&
+        !(await User.findOne({ password: req.body.password }))
+    ) {
         req.body.password = await bcrypt.hash(req.body.password, 15);
         passwordChanged = true;
     }
