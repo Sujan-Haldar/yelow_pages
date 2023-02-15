@@ -5,7 +5,7 @@ import "../../assets/css/iconDropdown.css";
 import loginContext from "../../context/loginContext";
 import {
     authentication,
-    removeHeaderFromLocalStorage,
+    removeHeaderFromLocalStorage
 } from "../../hook/useLogin";
 function LoginIcon() {
     const { isLogedin, setIsLogedin } = useContext(loginContext);

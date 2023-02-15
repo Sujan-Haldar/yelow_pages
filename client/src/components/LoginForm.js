@@ -24,7 +24,7 @@ function LoginForm() {
                 setHeaderAtLocalStorage(res.data.token);
                 setIsLogedin(authentication())
                 setTimeout(() => {
-                    navigate(-1);
+                    navigate("/");
                 }, 1000);
             }
             showSucessToast(res);

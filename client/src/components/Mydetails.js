@@ -11,7 +11,6 @@ function Mydetails() {
     const { _id } = getToken();
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
-    // const [phone,setPhone] = useState(null)
     const [address, setAddress] = useState(null);
     const [gender, setGender] = useState(null);
     const [profilePicSrc, setProfilePicSrc] = useState(loginImage);
