@@ -305,7 +305,7 @@ td {
 }
 
 .admin_all2 table tr td button:hover {
-    color: rgb(255, 0, 0);
+    background: red;
     transition: 0ms;
 }
 
