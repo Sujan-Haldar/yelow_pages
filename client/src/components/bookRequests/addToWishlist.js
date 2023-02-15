@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../../hook/useLogin";
+import { authentication, getToken } from "../../hook/useLogin";
 import { promiseToast } from "../../hook/useToast";
 import getUser from "../userRequests/getUser";
 
@@ -8,6 +8,7 @@ const AddToWishlist = book => {
 };
 
 const handleUpdateWishlist = async book => {
+    if (!authentication()) return Promise.reject("You Need To Login First!");
     const user = await getUser(getToken()._id);
     if (book.donatedBy === user._id)
         return Promise.reject("You Can't Add Your Own Book to Wishlist!");

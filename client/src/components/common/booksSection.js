@@ -13,6 +13,7 @@ const BooksSection = ({ books, onDelete, lable }) => {
                             key={book._id}
                             book={book}
                             onDelete={onDelete}
+                            pageLable={lable}
                         />
                     ))}
                 </table>
@@ -22,7 +23,7 @@ const BooksSection = ({ books, onDelete, lable }) => {
     return (
         <div className="admin_all2">
             <div className="heading">
-                <span>No {lable} Found!</span>
+                <span>{lable} is Empty!</span>
             </div>
         </div>
     );

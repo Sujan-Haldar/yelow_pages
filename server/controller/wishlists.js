@@ -24,6 +24,11 @@ const updateWishlist = async (req, res) => {
 
     if (!wishlist) return res.status(404).send("Wishlist Not Found!");
 
+    if (wishlist.books.includes(req.body.book))
+        return res
+            .status(400)
+            .json({ message: "Book Already added to Wishlist" });
+
     wishlist.books.push(req.body.book);
 
     res.send(await wishlist.save());

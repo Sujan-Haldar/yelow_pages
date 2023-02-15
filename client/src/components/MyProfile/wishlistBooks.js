@@ -3,7 +3,6 @@ import { getToken } from "../../hook/useLogin";
 import getWishlistBooks from "../bookRequests/getWishlistBooks";
 
 import "../../assets/css/userSection.css";
-import DeleteBook from "../bookRequests/deleteBook";
 import BooksSection from "../common/booksSection";
 import RemoveFromWishlist from "../bookRequests/removeFromWishlist";
 
@@ -24,7 +23,7 @@ const WishlistBooks = () => {
 
     return (
         <BooksSection
-            lable="Donated Books"
+            lable="My Wishlist"
             books={books}
             onDelete={handleRemove}
         />

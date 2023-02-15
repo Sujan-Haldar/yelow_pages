@@ -1,5 +1,6 @@
 import getUser from "../userRequests/getUser";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../common/button";
 import DeleteBook from "../bookRequests/deleteBook";
 import { getToken } from "../../hook/useLogin";
@@ -7,7 +8,7 @@ import AddToWishlist from "../bookRequests/addToWishlist";
 
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
-
+    const navigate = useNavigate();
     const [donor, setDonor] = useState(null);
     useEffect(() => {
         const getDonor = async () => {
@@ -74,7 +75,10 @@ function OtherBookDetails({ book }) {
                     <Button
                         lable="Delete"
                         className="btn-danger"
-                        onClick={() => DeleteBook(book)}
+                        onClick={() => {
+                            DeleteBook(book);
+                            navigate("/my-donated-books");
+                        }}
                     />
                 ) : (
                     <>

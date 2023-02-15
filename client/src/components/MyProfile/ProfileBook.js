@@ -1,15 +1,18 @@
+import { NavLink } from "react-router-dom";
 import getBookImg from "../bookRequests/getBookImg";
 import Button from "../common/button";
 
-const ProfileBook = ({ book, onDelete }) => {
+const ProfileBook = ({ book, onDelete, pageLable }) => {
     return (
-        <tr>
+        <tr style={{ height: "20rem" }}>
             <td>
-                <img
-                    className="book_img"
-                    src={getBookImg(book)}
-                    alt={book.title}
-                />
+                <NavLink to={`/books/${book._id}`}>
+                    <img
+                        className="book_img"
+                        src={getBookImg(book)}
+                        alt={book.title}
+                    />
+                </NavLink>
             </td>
             <td
                 style={{ width: "80%", textAlign: "left", paddingLeft: "9rem" }}
@@ -21,10 +24,13 @@ const ProfileBook = ({ book, onDelete }) => {
                 <div>
                     <strong>Author : </strong> <span>{book.author}</span>
                 </div>
-                <div>
-                    <strong>Donated On : </strong>
-                    <span>{new Date(book.donatedOn).toLocaleString()}</span>
-                </div>
+
+                {pageLable === "Donated Books" ? (
+                    <div>
+                        <strong>Donated On : </strong>
+                        <span>{new Date(book.donatedOn).toLocaleString()}</span>
+                    </div>
+                ) : null}
             </td>
             <td>
                 <Button lable="Delete" onClick={() => onDelete(book)} />

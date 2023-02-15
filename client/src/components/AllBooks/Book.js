@@ -6,11 +6,11 @@ function Book({ book }) {
     return (
         <div className="swiper-slide box">
             <div className="icons">
-                <a
-                    href="#"
+                <NavLink
+                    to=""
                     onClick={() => AddToWishlist(book)}
                     className="fas fa-heart"
-                ></a>
+                />
             </div>
             <div className="image">
                 <NavLink to={getBookPageLink(book)}>
@@ -22,9 +22,9 @@ function Book({ book }) {
                 {/* <div className="price">
                     $0 <span>$20.99</span>
                 </div> */}
-                <a href="#" className="btn">
+                <NavLink to={"mailto:abc@gmail.com"} className="btn">
                     Contact
-                </a>
+                </NavLink>
             </div>
         </div>
     );
