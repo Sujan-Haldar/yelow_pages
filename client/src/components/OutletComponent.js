@@ -11,4 +11,7 @@ export function OutletComponentFalse() {
     
 }
 
-// export default OutletComponent;
+
+export function PrivateRoute({children}){
+    return ( authentication() ? children : <Navigate to="/signin"/>);
+}
