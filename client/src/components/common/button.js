@@ -4,7 +4,7 @@ const Button = ({ lable, onClick, className }) => {
             type="button"
             onClick={onClick}
             className={"btn " + className}
-            style={{ margin: "1rem" }}
+            style={{ margin: "0.5rem" }}
         >
             {lable}
         </button>

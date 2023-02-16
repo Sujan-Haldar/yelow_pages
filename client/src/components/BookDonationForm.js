@@ -12,7 +12,7 @@ function BookDonationForm() {
     const [bookName, setBookName] = useState("");
     const [authorName, setAuthorName] = useState("");
     const [bookDetails, setBookDetails] = useState("");
-    const [bookCondition, setBookCondition] = useState("Poor");
+    const [bookCondition, setBookCondition] = useState("");
     const [publishYear, setPublishYear] = useState(null);
     const [bookImg, setBookImg] = useState(null);
     const navigate = useNavigate();
@@ -28,13 +28,15 @@ function BookDonationForm() {
         formData.append("bookCondition", bookCondition);
         formData.append("bookDetails", bookDetails);
         formData.append("file", bookImg);
-        mainSubmitForm("http://localhost:3030/books", formData, true, header)
-        .then(({data})=>{
-            console.log(data)
-            navigate(getBookPageLink(data))
-        })
-        
-        
+
+        mainSubmitForm(
+            "http://localhost:3030/books",
+            formData,
+            true,
+            header
+        ).then(({ data }) => {
+            navigate(getBookPageLink(data));
+        });
     };
 
     return (

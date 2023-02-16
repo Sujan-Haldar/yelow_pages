@@ -7,7 +7,7 @@ import { showFailureToast, showSucessToast } from "../hook/useToast";
 function LoginForm() {
     const [username, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
-    const {setIsLogedin} = useContext(loginContext)
+    const { setIsLogedin } = useContext(loginContext);
     const navigate = useNavigate();
     // const toastId = useRef(null);
 
@@ -22,7 +22,7 @@ function LoginForm() {
             const res = await axios.post("http://localhost:3030/login", data);
             if (res.data.token) {
                 setHeaderAtLocalStorage(res.data.token);
-                setIsLogedin(authentication())
+                setIsLogedin(authentication());
                 setTimeout(() => {
                     navigate("/");
                 }, 1000);
