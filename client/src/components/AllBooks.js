@@ -33,6 +33,13 @@ function AllBooks() {
                 <h1 class="heading">
                     <span>all books</span>
                     <SearchBox value={search} onChange={handleSearch} />
+                    <h3>
+                        {allbooks.length
+                            ? `Showing ${allbooks.length} ${
+                                  allbooks.length > 1 ? "books" : "book"
+                              }`
+                            : "No Books Available"}
+                    </h3>
                 </h1>
                 <div class="swiper featured-slider">
                     <div class="swiper-wrapper allBook">

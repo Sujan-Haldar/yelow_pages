@@ -1,11 +1,16 @@
 import ProfileBook from "./ProfileBook";
 
 const BooksSection = ({ books, onDelete, lable }) => {
-    if (books)
+    if (books && books.length > 0)
         return (
             <div>
                 <div className="heading">
                     <span>{lable}</span>
+                    <h3 style={{ marginTop: "1rem" }}>
+                        {`Showing ${books.length} ${
+                            books.length > 1 ? "books" : "book"
+                        }`}
+                    </h3>
                 </div>
                 <table style={{ margin: "auto" }}>
                     {books.map(book => (
@@ -21,10 +26,8 @@ const BooksSection = ({ books, onDelete, lable }) => {
         );
 
     return (
-        <div className="admin_all2">
-            <div className="heading">
-                <span>{lable} is Empty!</span>
-            </div>
+        <div className="heading">
+            <span>{lable} is Empty!</span>
         </div>
     );
 };

@@ -13,37 +13,79 @@ function HeaderSection() {
                 </a>
 
                 <nav className="navbar">
-                    <NavLink to="/" style={({isActive})=>{
-                        return isActive ? {backgroundColor : "#53391c"} : {}
-                    }}>home</NavLink>
+                    <NavLink
+                        to="/"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        home
+                    </NavLink>
 
-                    <NavLink to="./books" style={({isActive})=>{
-                        return isActive ? {backgroundColor : "#53391c"} : {}
-                    }}>all books</NavLink>
+                    <NavLink
+                        to="./books"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        all books
+                    </NavLink>
 
-                    <NavLink to="/bookdonationform" style={({isActive})=>{
-                        return isActive ? {backgroundColor : "#53391c"} : {}
-                    }}>donate</NavLink>
+                    <NavLink
+                        to="/bookdonationform"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        donate
+                    </NavLink>
 
-                    <NavLink to="/reviews" style={({isActive})=>{
-                        return isActive ? {backgroundColor : "#53391c"} : {}
-                    }}>feedbacks</NavLink>
+                    <NavLink
+                        to="/reviews"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        feedbacks
+                    </NavLink>
 
-                    <NavLink to="/about_us" style={({isActive})=>{
-                        return isActive ? {backgroundColor : "#53391c"} : {}
-                    }}>about us</NavLink>
+                    <NavLink
+                        to="/about_us"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        about us
+                    </NavLink>
 
                     {getToken() && getToken().isAdmin ? (
                         <>
                             {/* <NavLink to="/admin-section-allbooks">
-                                Admin Section
+                                Admin All books
                             </NavLink>
                             <NavLink to="/admin-section-allusers">
-                                Admin Section
+                                Admin all users
                             </NavLink> */}
-                            <NavLink to="/admin-section" style={({isActive})=>{
-                            return isActive ? {backgroundColor : "#53391c"} : {}
-                            }}>Admin Section</NavLink>
+                            <NavLink
+                                to="/admin-section"
+                                style={({ isActive }) => {
+                                    return isActive
+                                        ? { backgroundColor: "#53391c" }
+                                        : {};
+                                }}
+                            >
+                                Admin Section
+                            </NavLink>
                         </>
                     ) : null}
                 </nav>
