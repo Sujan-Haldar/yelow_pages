@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { getToken } from "../../hook/useLogin";
+import loginContext from "../../context/loginContext";
+import { authentication, getToken, removeHeaderFromLocalStorage } from "../../hook/useLogin";
 import getProfilePic from "../userRequests/getProfilePic";
 import getUser from "../userRequests/getUser";
-
 const AdminNavigationPannel = () => {
     const [user, setUser] = useState(null);
+    const { isLogedin, setIsLogedin } = useContext(loginContext);
     useEffect(() => {
         const fetchUser = async () => {
             setUser(await getUser(getToken()._id));
         };
         fetchUser();
     }, []);
+
+    function logout() {
+        removeHeaderFromLocalStorage();
+        setIsLogedin(authentication());
+    }
 
     if (user)
         return (
@@ -58,7 +64,7 @@ const AdminNavigationPannel = () => {
                             </NavLink>
                         </li> */}
                         <li>
-                            <NavLink to="/" style={{ fontSize: "2.8rem" }}>
+                            <NavLink to="/" style={{ fontSize: "2.8rem" }} onClick={logout}>
                                 sign out
                             </NavLink>
                         </li>

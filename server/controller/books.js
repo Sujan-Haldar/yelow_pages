@@ -3,7 +3,7 @@ const { unlink } = require("fs");
 const getAllBooks = async (req, res) => {
     res.send(await Book.find());
 };
-
+const path = require("path")
 const getBook = async (req, res) => {
     const book = await Book.findOne({ _id: req.params.id });
     if (!book) return res.status(404).send("Book Not Found!");
