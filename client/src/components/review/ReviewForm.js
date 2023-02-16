@@ -1,25 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import mainSubmitForm from "../../hook/useForm";
-import { useNavigate } from "react-router-dom";
-
+import { headers } from "../../hook/useLogin";
 function ReviewForm() {
+    const toastId = useRef();
     const [rating, setRating] = useState(1);
     const [content, setContent] = useState(null);
 
     const navigate = useNavigate();
 
     const reviewSubmit = e => {
-        try {
-            e.preventDefault();
-            const data = {
-                rating,
-                content,
-            };
-            mainSubmitForm("http://localhost:3030/reviews", data, true);
-        } catch (error) {
-            toast.error(error.message);
-        }
+        toastId.current = toast.loading("Please Wait...")
+        e.preventDefault();
+        const data = {
+            rating,
+            content,
+        };
+         mainSubmitForm("http://localhost:3030/reviews", data, true,headers(),toastId);
     };
     return (
         <div class="login-form-container active">
