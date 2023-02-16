@@ -22,9 +22,9 @@ function Book({ book }) {
                 {/* <div className="price">
                     $0 <span>$20.99</span>
                 </div> */}
-                <NavLink to={"mailto:abc@gmail.com"} className="btn">
+                <a href="mailto:abc@gmail.com" className="btn">
                     Contact
-                </NavLink>
+                </a>
             </div>
         </div>
     );

@@ -15,8 +15,7 @@ function InputTypeSelect({ value, setValue }) {
                 value={value}
                 onChange={e => setValue(e.target.value)}
             >
-                {/* <option value="very good">Very Good</option>
-                <option value="good">Good</option> */}
+                <option value="">select</option>
                 <option value="fine/like new">Fine/Like New</option>
                 <option value="near fine">Near Fine</option>
                 <option value="fair">Fair</option>
