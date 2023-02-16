@@ -77,6 +77,12 @@ function LoginForm() {
                     don't have an account ?{" "}
                     <NavLink to="/registration">click here</NavLink>
                 </p>
+
+                <p>
+                    verify account ?{" "}
+                    <NavLink to="/verify-account">click here</NavLink>
+                </p>
+
             </form>
         </div>
     );

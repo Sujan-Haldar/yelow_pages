@@ -1,5 +1,5 @@
 const { Book } = require("../models/book");
-
+const { unlink } = require("fs");
 const getAllBooks = async (req, res) => {
     res.send(await Book.find());
 };
@@ -29,6 +29,20 @@ const postBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
     const book = await Book.findByIdAndRemove(req.params.id);
+    const {previewImgSrc} = book;
+    if(previewImgSrc){
+        if(!previewImgSrc.startsWith("https")){
+            unlink(
+                path.join(
+                    __dirname,
+                    `/../public/uploads/bookImage/${previewImgSrc}`
+                ),
+                err => {
+                    if (err) next(err);
+                }
+            );
+        }
+    }
     res.send(book);
 };
 

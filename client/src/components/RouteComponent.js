@@ -26,7 +26,7 @@ function RouteComponent() {
     return (
         <Routes>
             <Route path="/" element={<Sections />}></Route>
-            <Route path="/reviews" element={<ReviewSection />}></Route>
+            <Route path="/reviews" element={<ReviewSection />} ></Route>
             <Route path="/registration" element={<Registration />}></Route>
             <Route path="/signin" element={<LoginForm />}></Route>
             <Route path="/forget-pasword" element={<SendPasswordResetLink />}></Route>

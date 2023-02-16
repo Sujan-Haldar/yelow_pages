@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { authentication } from "../hook/useLogin";
-import LoginIcon from "./header/LoginIcon";
+import { authentication, getToken } from "../hook/useLogin";
 import Button from "./common/button";
-import { getToken } from "../hook/useLogin";
+import LoginIcon from "./header/LoginIcon";
 
 function HeaderSection() {
     return (
@@ -14,11 +13,26 @@ function HeaderSection() {
                 </a>
 
                 <nav className="navbar">
-                    <NavLink to="/">home</NavLink>
-                    <NavLink to="./books">all books</NavLink>
-                    <NavLink to="/bookdonationform">donate</NavLink>
-                    <NavLink to="/reviews">feedbacks</NavLink>
-                    <NavLink to="/about_us">about us</NavLink>
+                    <NavLink to="/" style={({isActive})=>{
+                        return isActive ? {backgroundColor : "#53391c"} : {}
+                    }}>home</NavLink>
+
+                    <NavLink to="./books" style={({isActive})=>{
+                        return isActive ? {backgroundColor : "#53391c"} : {}
+                    }}>all books</NavLink>
+
+                    <NavLink to="/bookdonationform" style={({isActive})=>{
+                        return isActive ? {backgroundColor : "#53391c"} : {}
+                    }}>donate</NavLink>
+
+                    <NavLink to="/reviews" style={({isActive})=>{
+                        return isActive ? {backgroundColor : "#53391c"} : {}
+                    }}>feedbacks</NavLink>
+
+                    <NavLink to="/about_us" style={({isActive})=>{
+                        return isActive ? {backgroundColor : "#53391c"} : {}
+                    }}>about us</NavLink>
+
                     {getToken() && getToken().isAdmin ? (
                         <>
                             {/* <NavLink to="/admin-section-allbooks">
@@ -27,7 +41,9 @@ function HeaderSection() {
                             <NavLink to="/admin-section-allusers">
                                 Admin Section
                             </NavLink> */}
-                            <NavLink to="/admin-section">Admin Section</NavLink>
+                            <NavLink to="/admin-section" style={({isActive})=>{
+                            return isActive ? {backgroundColor : "#53391c"} : {}
+                            }}>Admin Section</NavLink>
                         </>
                     ) : null}
                 </nav>

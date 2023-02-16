@@ -1,17 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { showFailureToast, showSucessToast } from "../hook/useToast";
 import image from "../image/forgetpassword.png";
 import sendEmail from "./verifyEmail/sendEmail";
 function SendAccountVerificationLink() {
+    const navigate = useNavigate();
     const [email,setEmail] = useState(null);
     const submit =async (e)=>{
         e.preventDefault();
-        try {
-           const res = await sendEmail(email) ;
-           showSucessToast(res)
-        } catch (error) {
-            showFailureToast(error)
-        }
+        // try {
+        //    const res = await sendEmail(email) ;
+        //    showSucessToast(res)
+        //    navigate("/")
+        // } catch (error) {
+        //     showFailureToast(error)
+        // }
+        sendEmail(email)
+            .then(res => {
+                showSucessToast(res);
+                navigate("/")
+            })
+            .catch(error => {
+                showFailureToast(error)
+            })
     }
     return ( 
         <div class="login-form-container">
@@ -19,8 +30,6 @@ function SendAccountVerificationLink() {
             {/* <img src="/image/forgetpassword.png" alt="check internet connection" width="100px" style="margin: auto;
             display: block ;"/> */}
             <img src={image} alt="check internet connection" style={{"width":"100px","margin":"auto","display":"block"}}/>
-
-
             <br/>
             <h3>Get verification link</h3>
         
