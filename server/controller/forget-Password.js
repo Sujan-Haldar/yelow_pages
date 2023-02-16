@@ -38,10 +38,17 @@ const generateTokenAndSend = async (req,res,next) =>{
         token : token
       })
     
-    data.save((err,doc)=>{
-        if(err) return res.status(400).json({ message: 'An error occurred' });
-        sendMail(res,myTransporter,myMailOptions);
-    });      
+    // data.save((err,doc)=>{
+    //     if(err) return res.status(400).json({ message: 'An error occurred' });
+    //     sendMail(res,myTransporter,myMailOptions);
+    // });  
+    data.save()
+      .then(response => {
+          sendMail(res,myTransporter,myMailOptions);
+      })
+      .catch(error => {
+          return res.status(400).json({ message: 'An error occurred' });
+      })    
 }
 
 const verifyAndResetPassword= async( req,res,next)=>{
@@ -53,7 +60,7 @@ const verifyAndResetPassword= async( req,res,next)=>{
       
       if(!password) return res.status(404).json({message :"Please give a new password..."})
       if(!confirmPassword) return res.status(404).json({message :"Please confirm the password..."});
-      if(password != confirmPassword) return res.status(404).json({message :"Incorrect password..."});
+      if(password != confirmPassword) return res.status(404).json({message :"Password mismatched..."});
 
       if(password.length >= 8) {
           const hash = await bcrypt.hash(password, 15);

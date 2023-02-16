@@ -20,10 +20,18 @@ const sendEmailForAccountVerification = async (req,res,next)=>{
         token : token
     })
     
-    data.save((err,doc)=>{
-        if(err) return res.status(400).json({ message: 'An error occurred' });
-        sendMail(res,myTransporter,myMailOptions);
-    });
+    // data.save((err,doc)=>{
+    //     if(err) return res.status(400).json({ message: 'An error occurred' });
+    //     sendMail(res,myTransporter,myMailOptions);
+    // });
+
+    data.save()
+        .then(response => {
+            sendMail(res,myTransporter,myMailOptions);
+        })
+        .catch(error => {
+            return res.status(400).json({ message: 'An error occurred' });
+        })
 
       
 }

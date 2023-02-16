@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/myDetails.css";
-import { getToken, headers } from "../hook/useLogin";
+import loginContext from "../context/loginContext";
+import { authentication, getToken, headers, removeHeaderFromLocalStorage } from "../hook/useLogin";
 import { showFailureToast, showSucessToast } from "../hook/useToast";
 import loginImage from "../image/login.png";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
@@ -14,6 +15,7 @@ function Mydetails() {
     const [address, setAddress] = useState(null);
     const [gender, setGender] = useState(null);
     const [profilePicSrc, setProfilePicSrc] = useState(loginImage);
+    const { isLogedin, setIsLogedin } = useContext(loginContext);
     useEffect(() => {
         const fetchDetails = async () => {
             try {
@@ -49,6 +51,10 @@ function Mydetails() {
             showFailureToast(error);
         }
     }
+    function logout() {
+        removeHeaderFromLocalStorage();
+        setIsLogedin(authentication());
+    }
     return (
         <div class="myacc">
             <div class="myacc1">
@@ -77,12 +83,12 @@ function Mydetails() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" style={{ "font-size": "2.8rem" }}>
+                            <NavLink to="/my-wishlist" style={{ "font-size": "2.8rem" }}>
                                 wishlist
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" style={{ "font-size": "2.8rem" }}>
+                            <NavLink to="/" style={{ "font-size": "2.8rem" }}  onClick={logout}>
                                 sign out
                             </NavLink>
                         </li>
