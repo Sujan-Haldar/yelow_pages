@@ -10,11 +10,7 @@ function bookUpload(req,res,next) {
     upload.any()(req,res ,(err)=>{
         if(err){
             res.status(500).json({
-                errors : {
-                    bookImgError : {
-                        msg : err.message,
-                    }
-                }
+                message : err.message,
             })
         }else {
             next();

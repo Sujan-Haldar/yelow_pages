@@ -15,17 +15,17 @@ const sendEmailForAccountVerification = async (req,res,next)=>{
 
     const myMailOptions = mailOptions(email,'Verify Email',text);
 
-    try {
-        const data = new ResetToken({
-            email : req.body.email,
-            token : token
-        })
-        await data.save();
+    const data = new ResetToken({
+        email : req.body.email,
+        token : token
+    })
+    
+    data.save((err,doc)=>{
+        if(err) return res.status(400).json({ message: 'An error occurred' });
         sendMail(res,myTransporter,myMailOptions);
+    });
 
-      } catch (error) {
-            res.status(400).json({ message: 'An error occurred' });
-      }
+      
 }
 
 const verifyEmailForAccountVerification =async (req,res,next)=>{

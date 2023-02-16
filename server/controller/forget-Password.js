@@ -21,19 +21,27 @@ const generateTokenAndSend = async (req,res,next) =>{
 
       const myMailOptions = mailOptions(email,'Password Reset Request',text);
       
-      try {
-        const data = new ResetToken({
-            email : req.body.email,
-            token : token
-        })
-        await data.save();
-        sendMail(res,myTransporter,myMailOptions);
+      // try {
+      //   const data = new ResetToken({
+      //       email : req.body.email,
+      //       token : token
+      //   })
+      //   await data.save();
+      //   sendMail(res,myTransporter,myMailOptions);
         
-      } catch (error) {
-        res.status(400).json({ message: 'An error occurred' });
-      }
-      
-      
+      // } catch (error) {
+      //   res.status(400).json({ message: 'An error occurred' });
+      // }
+
+      const data = new ResetToken({
+        email : req.body.email,
+        token : token
+      })
+    
+    data.save((err,doc)=>{
+        if(err) return res.status(400).json({ message: 'An error occurred' });
+        sendMail(res,myTransporter,myMailOptions);
+    });      
 }
 
 const verifyAndResetPassword= async( req,res,next)=>{
