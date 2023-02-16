@@ -25,6 +25,7 @@ function LoginForm() {
                 setIsLogedin(authentication());
                 setTimeout(() => {
                     navigate("/");
+                    window.location.reload(true);
                 }, 1000);
             }
             showSucessToast(res);

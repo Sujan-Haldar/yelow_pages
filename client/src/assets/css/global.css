@@ -616,6 +616,17 @@ section {
     line-height: 2;
 }
 
+.allreviews {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.allreviews .box {
+    width: 30%;
+    height: fit-content;
+}
+
 .reviews .reviews-slider .box {
     border: var(--border);
     padding: 2rem;

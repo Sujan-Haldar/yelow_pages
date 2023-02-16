@@ -8,13 +8,13 @@ import RouteComponent from "./components/RouteComponent";
 import loginContext from "./context/loginContext";
 import { authentication } from "./hook/useLogin";
 function App() {
-    const [isLogedin,setIsLogedin] = useState(authentication())
+    const [isLogedin, setIsLogedin] = useState(authentication());
     return (
         <div>
             <ToastContainer
                 position={"top-center"}
                 hideProgressBar={false}
-                autoClose={5000}
+                autoClose={2000}
                 closeOnClick={true}
                 pauseOnHover={true}
                 draggable={true}
@@ -22,8 +22,8 @@ function App() {
                 theme={"colored"}
                 style={{ scale: "1.2" }}
             />
-            <loginContext.Provider value={{isLogedin,setIsLogedin}}>
-                <HeaderSection/>
+            <loginContext.Provider value={{ isLogedin, setIsLogedin }}>
+                <HeaderSection />
                 <RouteComponent />
                 <FooterSection />
             </loginContext.Provider>

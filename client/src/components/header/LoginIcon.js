@@ -5,7 +5,7 @@ import "../../assets/css/iconDropdown.css";
 import loginContext from "../../context/loginContext";
 import {
     authentication,
-    removeHeaderFromLocalStorage
+    removeHeaderFromLocalStorage,
 } from "../../hook/useLogin";
 function LoginIcon() {
     const { isLogedin, setIsLogedin } = useContext(loginContext);
@@ -15,13 +15,13 @@ function LoginIcon() {
     }
     if (isLogedin) {
         return (
-            <div class="dropdown">
+            <div className="dropdown">
                 <div className="icons">
                     {/* <NavLink to="/signin"> */}
                     <div id="login-btn" className="fas fa-user"></div>
                     {/* </NavLink> */}
                 </div>
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                     <NavLink to="/myprofile">My Profile</NavLink>
                     <NavLink to="/my-donated-books">Donated Books</NavLink>
                     <NavLink to="/my-wishlist">wishlist</NavLink>

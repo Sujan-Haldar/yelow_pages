@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import getUser from "../userRequests/getUser";
 import _ from "lodash";
 import getProfilePic from "../userRequests/getProfilePic";
+import Button from "../common/button";
+import { getToken } from "../../hook/useLogin";
 
-const Review = ({ review }) => {
+const Review = ({ review, onDelete }) => {
     const [user, setUser] = useState(null);
     useEffect(() => {
         const getDonor = async () => {
@@ -39,6 +41,13 @@ const Review = ({ review }) => {
                     <i key={ele} className="fa fa-star-o"></i>
                 ))}
             </div>
+            {review.user === getToken()._id ? (
+                <Button
+                    lable="Delete"
+                    className="btn-danger"
+                    onClick={() => onDelete(review)}
+                />
+            ) : null}
         </div>
     );
 };
