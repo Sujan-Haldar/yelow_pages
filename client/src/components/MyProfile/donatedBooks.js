@@ -4,7 +4,7 @@ import getAllBooks from "../bookRequests/getAllBooks";
 
 import "../../assets/css/userSection.css";
 import DeleteBook from "../bookRequests/deleteBook";
-import BooksSection from "../common/booksSection";
+import BooksSection from "./booksSection";
 
 const DonatedBooks = () => {
     const [books, setBooks] = useState(null);
@@ -23,11 +23,13 @@ const DonatedBooks = () => {
     };
 
     return (
-        <BooksSection
-            lable="Donated Books"
-            books={books}
-            onDelete={handleDelete}
-        />
+        <div className="admin_all2">
+            <BooksSection
+                lable="Donated Books"
+                books={books}
+                onDelete={handleDelete}
+            />
+        </div>
     );
 };
 

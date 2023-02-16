@@ -15,7 +15,7 @@ const ProfileBook = ({ book, onDelete, pageLable }) => {
                 </NavLink>
             </td>
             <td
-                style={{ width: "80%", textAlign: "left", paddingLeft: "9rem" }}
+                style={{ width: "75%", textAlign: "left", paddingLeft: "9rem" }}
             >
                 <div>
                     <strong>Title : </strong> <span>{book.title}</span>
@@ -25,7 +25,7 @@ const ProfileBook = ({ book, onDelete, pageLable }) => {
                     <strong>Author : </strong> <span>{book.author}</span>
                 </div>
 
-                {pageLable === "Donated Books" ? (
+                {pageLable !== "My Wishlist" ? (
                     <div>
                         <strong>Donated On : </strong>
                         <span>{new Date(book.donatedOn).toLocaleString()}</span>

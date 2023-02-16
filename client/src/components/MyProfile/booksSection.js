@@ -1,9 +1,9 @@
-import ProfileBook from "../MyProfile/ProfileBook";
+import ProfileBook from "./ProfileBook";
 
 const BooksSection = ({ books, onDelete, lable }) => {
     if (books)
         return (
-            <div className="admin_all2">
+            <div>
                 <div className="heading">
                     <span>{lable}</span>
                 </div>

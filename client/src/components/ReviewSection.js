@@ -33,7 +33,7 @@ function ReviewSection() {
                             rewind={true}
                             modules={[Autoplay]}
                             autoplay={{
-                                delay: 2500,
+                                delay: 1500,
                                 disableOnInteraction: false,
                             }}
                             className="mySwiper"

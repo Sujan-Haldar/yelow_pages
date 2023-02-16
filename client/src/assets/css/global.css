@@ -89,15 +89,15 @@ section {
 }
 
 .btn:hover {
-    background: var(--dark-color);
-    box-shadow: 5px 3px 20px black, -5px -3px 20px black;
+    background: #ee9d24;
+    box-shadow: 4px 2px 15px black, -4px -2px 15px black;
 }
 
 .btn-primary:hover {
-    background-color: rgb(41, 157, 61);
+    background-color: rgb(125, 185, 37);
 }
 .btn-primary {
-    background-color: rgb(123, 96, 27);
+    background-color: rgb(24, 145, 151);
 }
 .btn-secondary {
     background-color: rgb(0, 184, 21);
