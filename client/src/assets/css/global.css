@@ -90,7 +90,6 @@ section {
 
 .btn:hover {
     background: #ee9d24;
-    box-shadow: 4px 2px 15px black, -4px -2px 15px black;
 }
 
 .btn-primary:hover {
