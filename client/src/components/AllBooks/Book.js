@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
 import AddToWishlist from "../bookRequests/addToWishlist";
+import Contact from "../bookRequests/contact";
 import getBookImg from "../bookRequests/getBookImg";
 import getBookPageLink from "../bookRequests/getBookPageLink";
 import Button from "../common/button";
@@ -35,10 +35,7 @@ function Book({ book }) {
                 {/* <div className="price">
                     $0 <span>$20.99</span>
                 </div> */}
-                <Button
-                    lable="Contact"
-                    onClick={() => window.open(`mailto:${donor.email}`)}
-                />
+                <Button lable="Contact" onClick={() => Contact(book)} />
             </div>
         </div>
     );

@@ -6,6 +6,11 @@ const UsersSection = ({ users, onDelete, lable }) => {
             <div>
                 <div className="heading">
                     <span>{lable}</span>
+                    <h3 style={{ marginTop: "1rem" }}>
+                        {`Showing ${users.length} ${
+                            users.length > 1 ? "users" : "user"
+                        }`}
+                    </h3>
                 </div>
                 <table style={{ margin: "auto" }}>
                     {users.map(user => (

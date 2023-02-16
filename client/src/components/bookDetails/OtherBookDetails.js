@@ -5,11 +5,13 @@ import Button from "../common/button";
 import DeleteBook from "../bookRequests/deleteBook";
 import { getToken } from "../../hook/useLogin";
 import AddToWishlist from "../bookRequests/addToWishlist";
+import Contact from "../bookRequests/contact";
 
 function OtherBookDetails({ book }) {
     const { title, author, bookDetails, bookCondition } = book;
     const navigate = useNavigate();
     const [donor, setDonor] = useState(null);
+
     useEffect(() => {
         const getDonor = async () => {
             setDonor(await getUser(book.donatedBy));
@@ -87,7 +89,12 @@ function OtherBookDetails({ book }) {
                             className="btn-primary"
                             onClick={() => AddToWishlist(book)}
                         />
-                        <Button lable="Contact" className="btn-primary" />
+
+                        <Button
+                            lable="Contact"
+                            onClick={() => Contact(book)}
+                            className="btn-primary"
+                        />
                     </>
                 )}
             </form>
