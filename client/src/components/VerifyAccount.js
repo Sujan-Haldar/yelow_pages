@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { showFailureToast, showSucessToast } from "../hook/useToast";
+import { toast } from "react-toastify";
+import { updateLoadingFailureToast, updateLoadingSucessToast } from "../hook/useToast";
 import image from "../image/forgetpassword.png";
 import verifyEmail from "./verifyEmail/verifyEmail";
 function VerifyAccount() {
     const params = useParams();
+    const toastId = useRef(null)
     const [email,setEmail] = useState(null);
     const navigate = useNavigate();
     const submit =async (e)=>{
         e.preventDefault();
+        toastId.current = toast.loading("Please Wait...")
         // try {
         //    const res = await verifyEmail(email,params.token) ;
         //    showSucessToast(res)
@@ -17,11 +20,13 @@ function VerifyAccount() {
         // }
         verifyEmail(email,params.token)
             .then(res => {
-                showSucessToast(res);
+                // showSucessToast(res);
+                updateLoadingSucessToast(toastId,res);
                 navigate("/signin")
             })
             .catch(error => {
-                showFailureToast(error)
+                // showFailureToast(error)
+                updateLoadingFailureToast(toastId,error)
             })
     }
     return ( 

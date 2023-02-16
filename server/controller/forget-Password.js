@@ -44,7 +44,8 @@ const generateTokenAndSend = async (req,res,next) =>{
     // });  
     data.save()
       .then(response => {
-          sendMail(res,myTransporter,myMailOptions);
+        if (response) sendMail(res,myTransporter,myMailOptions);
+        else return res.status(400).json({ message: 'An error occurred' });
       })
       .catch(error => {
           return res.status(400).json({ message: 'An error occurred' });
