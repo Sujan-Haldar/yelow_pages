@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { showFailureToast, showSucessToast } from "../hook/useToast";
+import { toast } from "react-toastify";
+import { updateLoadingFailureToast, updateLoadingSucessToast } from "../hook/useToast";
 import image from "../image/forgetpassword.png";
 import resetPassword from "./forgetPasswordRequest/resetPassword";
 function ForgetPassword() {
+    const toastId = useRef(null)
     const navigate = useNavigate();
     const params = useParams();
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
     const submit =async (e)=>{
         e.preventDefault();
+        toastId.current = toast.loading("Please Wait...")
         // try {
         //    const res = await resetPassword(password,confirmPassword,params.token) ;
         //    showSucessToast(res)
@@ -20,11 +23,13 @@ function ForgetPassword() {
 
         resetPassword(password,confirmPassword,params.token)
             .then(res => {
-                showSucessToast(res)
+                // showSucessToast(res)
+                updateLoadingSucessToast(toastId,res)
                 navigate("/signin")
             })
             .catch(error => {
-                showFailureToast(error)
+                // showFailureToast(error)
+                updateLoadingFailureToast(toastId,error)
             })
 
 
