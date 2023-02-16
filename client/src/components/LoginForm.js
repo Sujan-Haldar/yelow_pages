@@ -1,18 +1,19 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import loginContext from "../context/loginContext";
 import { authentication, setHeaderAtLocalStorage } from "../hook/useLogin";
-import { showFailureToast, showSucessToast } from "../hook/useToast";
+import { updateLoadingFailureToast, updateLoadingSucessToast } from "../hook/useToast";
 function LoginForm() {
     const [username, setUserName] = useState(null);
     const [password, setPassword] = useState(null);
     const { setIsLogedin } = useContext(loginContext);
     const navigate = useNavigate();
-    // const toastId = useRef(null);
+    const toastId = useRef(null);
 
     const submitForm = async e => {
-        // toastId.current = toast.loading("Please Wait...")
+        toastId.current = toast.loading("Please Wait...")
         e.preventDefault();
         try {
             const data = {
@@ -28,11 +29,11 @@ function LoginForm() {
                     window.location.reload(true);
                 }, 1000);
             }
-            showSucessToast(res);
-            // updateLoadingSucessToast(toastId,res)
+            // showSucessToast(res);
+            updateLoadingSucessToast(toastId,res)
         } catch (error) {
-            showFailureToast(error);
-            // updateLoadingFailureToast(toastId,error)
+            // showFailureToast(error);
+            updateLoadingFailureToast(toastId,error)
         }
     };
     return (

@@ -11,12 +11,14 @@
 }
 .dropdown:hover .dropdown-content {
   display: block;
+  z-index: 100;
 }
 .dropdown-content a {
   display: block;
   color: #ffffff;
   padding: 5px;
   text-decoration: none;
+  font-size: 2rem;
 }
 .dropdown-content a:hover {
   color: #ffffff;

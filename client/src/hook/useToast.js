@@ -24,6 +24,11 @@ export function updateLoadingSucessToast(
         render: message,
         type: "success",
         isLoading: false,
+        autoClose:2000,
+        closeOnClick:true,
+        pauseOnHover:true,
+        draggable:true,
+        progress:undefined
     });
 }
 export function updateLoadingFailureToast(
@@ -31,11 +36,20 @@ export function updateLoadingFailureToast(
     error,
     msg = "Operation is not sucessfull"
 ) {
-    const message = error.response.data.message || error.message;
+    const message = error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : msg;
     return toast.update(toastId.current, {
         render: message,
         type: "error",
         isLoading: false,
+        autoClose:2000,
+        closeOnClick:true,
+        pauseOnHover:true,
+        draggable:true,
+        progress:undefined
     });
 }
 
