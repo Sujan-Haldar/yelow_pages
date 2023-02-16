@@ -1,17 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { showFailureToast, showSucessToast } from "../hook/useToast";
 import image from "../image/forgetpassword.png";
 import sendEmail from "./forgetPasswordRequest/sendEmail";
 function SendPasswordResetLink() {
     const [email,setEmail] = useState(null);
+    const navigate = useNavigate();
     const submit =async (e)=>{
         e.preventDefault();
-        try {
-           const res = await sendEmail(email) ;
-           showSucessToast(res)
-        } catch (error) {
-            showFailureToast(error)
-        }
+        // try {
+        //    const res = await sendEmail(email) ;
+        //    showSucessToast(res)
+        // } catch (error) {
+        //     showFailureToast(error)
+        // }
+        sendEmail(email)
+            .then(res=>{
+                showSucessToast(res) 
+                navigate("/")
+            })
+            .catch(error => {
+                showFailureToast(error)
+            })
+
     }
     return ( 
         <div class="login-form-container">
