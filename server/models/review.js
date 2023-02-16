@@ -16,7 +16,7 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 255,
+        maxlength: 500,
     },
     publishedTime: {
         type: Date,
@@ -28,7 +28,7 @@ const Review = mongoose.model("Review", reviewSchema);
 
 const validator = async review => {
     const schema = yup.object({
-        content: yup.string().required().min(5).max(255),
+        content: yup.string().required().min(5).max(500),
     });
 
     return schema.validate(review).catch(err => err);

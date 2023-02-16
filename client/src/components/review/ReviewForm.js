@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import mainSubmitForm from "../../hook/useForm";
+import { useNavigate } from "react-router-dom";
+
 function ReviewForm() {
     const [rating, setRating] = useState(1);
     const [content, setContent] = useState(null);
+
+    const navigate = useNavigate();
+
     const reviewSubmit = e => {
         try {
             e.preventDefault();
@@ -18,7 +23,13 @@ function ReviewForm() {
     };
     return (
         <div class="login-form-container active">
-            <form action="" onSubmit={reviewSubmit}>
+            <form
+                action=""
+                onSubmit={e => {
+                    reviewSubmit(e);
+                    navigate("/reviews");
+                }}
+            >
                 <h3 style={{ color: "#d4911f" }}>SHARE YOUR EXPERIENCE </h3>
                 <br />
                 {/* <b>
