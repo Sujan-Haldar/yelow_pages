@@ -42,7 +42,11 @@ const Review = ({ review, onDelete }) => {
                 ))}
             </div>
             {review.user === getToken()._id ? (
-                <Button lable="Delete" onClick={() => onDelete(review)} />
+                <Button
+                    lable="Delete"
+                    className="btn-danger"
+                    onClick={() => onDelete(review)}
+                />
             ) : null}
         </div>
     );
