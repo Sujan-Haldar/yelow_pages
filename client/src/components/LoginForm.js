@@ -70,7 +70,7 @@ function LoginForm() {
                 <input type="submit" value="sign in" className="btn" />
                 <p>
                     forget password ?{" "}
-                    <NavLink to="/forget_pasword">click here</NavLink>
+                    <NavLink to="/forget-pasword">click here</NavLink>
                 </p>
                 <p>
                     don't have an account ?{" "}

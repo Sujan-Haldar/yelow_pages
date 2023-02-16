@@ -12,7 +12,7 @@ const resetTokens = new mongoose.Schema({
     expire_at : {
         type : Date,
         default : Date.now(),
-        expires : 600
+        expires : 300
     }
 })
 

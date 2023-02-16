@@ -18,6 +18,7 @@ import Registration from "./Registration";
 import ReviewForm from "./review/ReviewForm";
 import ReviewSection from "./ReviewSection";
 import Sections from "./Sections";
+import SendPasswordResetLink from "./SendPasswordResetLink";
 
 function RouteComponent() {
     return (
@@ -26,7 +27,8 @@ function RouteComponent() {
             <Route path="/reviews" element={<ReviewSection />}></Route>
             <Route path="/registration" element={<Registration />}></Route>
             <Route path="/signin" element={<LoginForm />}></Route>
-            <Route path="/forget_pasword" element={<ForgetPassword />}></Route>
+            <Route path="/forget-pasword" element={<SendPasswordResetLink />}></Route>
+            <Route path="/forget-pasword/:token" element={<ForgetPassword />}></Route>
             <Route path="/books" element={<AllBooks />}></Route>
 
             <Route path="/*" element={<OutletComponentTrue />}>
