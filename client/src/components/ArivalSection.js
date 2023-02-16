@@ -17,7 +17,7 @@ function ArivalSection() {
 
     if (books) {
         const newest = books
-            .slice(Math.abs(books.length - 14), books.length)
+            .slice(Math.abs(books.length - 8), books.length)
             .reverse();
         const firstHalf = newest.slice(0, newest.length / 2);
         const secondHalf = newest.slice(newest.length / 2, newest.length);
