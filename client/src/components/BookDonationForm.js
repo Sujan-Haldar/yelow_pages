@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import mainSubmitForm from "../hook/useForm";
 import { headers } from "../hook/useLogin";
 import donatebookLogo from "../image/donatebook.png";
@@ -16,7 +17,9 @@ function BookDonationForm() {
     const [publishYear, setPublishYear] = useState(null);
     const [bookImg, setBookImg] = useState(null);
     const navigate = useNavigate();
+    const toastId = useRef(null);
     const submitForm = e => {
+        toastId.current = toast.loading("Please Wait...")
         e.preventDefault();
         const header = headers();
         header["Content-Type"] = "multipart/form-data";
@@ -33,7 +36,7 @@ function BookDonationForm() {
             "http://localhost:3030/books",
             formData,
             true,
-            header
+            header,toastId
         ).then(({ data }) => {
             navigate(getBookPageLink(data));
         });

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import mainSubmitForm from "../hook/useForm";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
@@ -12,13 +13,15 @@ function Registration() {
     const [phone,setPhone] = useState(null);
     const [address,setAddress] = useState(null);
     const navigate  = useNavigate();
+    const toastId = useRef(null);
     const submitFrom =(e)=>{
+        toastId.current = toast.loading("Please Wait...")
         e.preventDefault();
         try {
             const data = {
                 gender,name,email,password,phone,address
             }
-            mainSubmitForm("http://localhost:3030/users",data,false)
+            mainSubmitForm("http://localhost:3030/users",data,false,null,toastId)
             .then(({data})=>{
                 navigate("/verify-account")
             })
