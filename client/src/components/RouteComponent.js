@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import { getToken } from "../hook/useLogin";
 import AboutUs from "./AboutUs";
+import AdminHome from "./admin Section/adminHome";
+import AllBooksAdmin from "./admin Section/allBooksAdmin";
+import AllUsersAdmin from "./admin Section/allUsersAdmin";
 import AllBooks from "./AllBooks";
 import BookDetails from "./BookDetails";
 import BookDonationForm from "./BookDonationForm";
@@ -43,7 +47,25 @@ function RouteComponent() {
                 ></Route>
                 <Route path="my-wishlist" element={<WishlistBooks />}></Route>
             </Route>
-
+            {getToken() && getToken().isAdmin ? (
+                <>
+                    <Route
+                        path="/admin-section-allbooks"
+                        element={<AllBooksAdmin />}
+                    >
+                        Admin Section
+                    </Route>
+                    <Route
+                        path="/admin-section-allusers"
+                        element={<AllUsersAdmin />}
+                    >
+                        Admin Section
+                    </Route>
+                    <Route path="/admin-section" element={<AdminHome />}>
+                        Admin Section
+                    </Route>
+                </>
+            ) : null}
             <Route path="/about_us" element={<AboutUs />}></Route>
             <Route path="/books/:_id" element={<BookDetails />}></Route>
             <Route path="*" element={<PageNotFound />}></Route>
