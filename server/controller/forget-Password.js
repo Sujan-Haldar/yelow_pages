@@ -13,24 +13,12 @@ const generateTokenAndSend = async (req,res,next) =>{
     const user = await User.findOne({email : email });
     if(!user) return res.status(400).json({ message: "Invalid email." });
 
-    // const transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //       user: 'phoenix.squad.2022@gmail.com',
-    //       pass: 'tmynmdwivzvisqis',
-    //     },
-    //   });
-
       const myTransporter = transporter()
+
       const token = crypto.randomBytes(32).toString('hex');
 
-      // const mailOptions = {
-      //   from: 'phoenix.squad.2022@gmail.com',
-      //   to: email,
-      //   subject: 'Password Reset Request',
-      //   text: `http://localhost:3000/forget-pasword/${token}`
-      // };
       const text = `http://localhost:3000/forget-pasword/${token}`
+
       const myMailOptions = mailOptions(email,'Password Reset Request',text);
       
       try {
@@ -39,18 +27,12 @@ const generateTokenAndSend = async (req,res,next) =>{
             token : token
         })
         await data.save();
-
+        sendMail(res,myTransporter,myMailOptions);
+        
       } catch (error) {
         res.status(400).json({ message: 'An error occurred' });
       }
-
-      // myTransporter.sendMail(myMailOptions, (err) => {
-      //   if (err) {
-      //     return res.status(500).json({ message: 'An error occurred ' });
-      //   }
-      //   res.json({ message: 'An email has been sent with further instructions' });
-      // });
-      sendMail(res,myTransporter,myMailOptions);
+      
       
 }
 

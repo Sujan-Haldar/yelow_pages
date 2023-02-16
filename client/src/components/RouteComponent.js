@@ -14,7 +14,9 @@ import Registration from "./Registration";
 import ReviewForm from "./review/ReviewForm";
 import ReviewSection from "./ReviewSection";
 import Sections from "./Sections";
+import SendAccountVerificationLink from "./SendAccountVerificationLink";
 import SendPasswordResetLink from "./SendPasswordResetLink";
+import VerifyAccount from "./VerifyAccount";
 
 function RouteComponent() {
     return (
@@ -25,6 +27,10 @@ function RouteComponent() {
             <Route path="/signin" element={<LoginForm />}></Route>
             <Route path="/forget-pasword" element={<SendPasswordResetLink />}></Route>
             <Route path="/forget-pasword/:token" element={<ForgetPassword />}></Route>
+            <Route path="/verify-account" element={<SendAccountVerificationLink />}></Route>
+
+            <Route path="/verify-account/:token" element={<VerifyAccount />}></Route>
+
             <Route path="/books" element={<AllBooks />}></Route>
 
             <Route path="/*" element={<OutletComponentTrue />}>

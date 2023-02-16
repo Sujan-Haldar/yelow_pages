@@ -9,6 +9,7 @@ const wishlists = require("./routes/wishlists");
 const reviews = require("./routes/reviews");
 const login = require("./routes/login");
 const forgetPassword = require("./routes/forget-password")
+const verifyAccount = require("./routes/verify-account")
 
 //Internal imports
 const {
@@ -63,7 +64,7 @@ app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
 app.use("/login", login);
 app.use("/forget-password",forgetPassword)
-
+app.use("/verify-account",verifyAccount)
 app.get("/verify-Login", auth, (req, res) => {
     console.log(req.user);
     res.json({

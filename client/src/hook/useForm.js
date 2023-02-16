@@ -22,6 +22,7 @@ export default async function mainSubmitForm(
             if (res) {
                 showSucessToast(res);
             }
+            return res;
         }
     } catch (error) {
         showFailureToast(error);

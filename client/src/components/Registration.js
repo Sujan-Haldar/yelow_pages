@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import mainSubmitForm from "../hook/useForm";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
@@ -11,7 +11,7 @@ function Registration() {
     const [gender,setgender] = useState();
     const [phone,setPhone] = useState(null);
     const [address,setAddress] = useState(null);
-
+    const navigate  = useNavigate();
     const submitFrom =(e)=>{
         e.preventDefault();
         try {
@@ -19,7 +19,9 @@ function Registration() {
                 gender,name,email,password,phone,address
             }
             mainSubmitForm("http://localhost:3030/users",data,false)
-
+            .then(({data})=>{
+                navigate("/verify-account")
+            })
         } catch (error) {
             
         }
