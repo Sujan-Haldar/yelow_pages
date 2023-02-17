@@ -20,8 +20,11 @@
     text-align: center;
 }
 .aboutus .content ul {
-    margin-left: 100px;
     text-align: justify;
+    margin-left: 100px;
+}
+.aboutus .content li {
+    margin-left: 200px;
 }
 .heading1::before {
     content: "";
