@@ -9,7 +9,6 @@ function Sections() {
     return (
         <div>
             <HomeSection />
-            <ButtomNavbar/>
             <FeaturedSection />
             {/* <NewsletterSection /> */}
             <ArivalSection />

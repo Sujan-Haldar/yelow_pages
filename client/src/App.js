@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/global.css";
+import ButtomNavbar from "./components/ButtomNavbar";
 import FooterSection from "./components/FooterSection";
 import HeaderSection from "./components/HeaderSection";
 import RouteComponent from "./components/RouteComponent";
@@ -26,6 +27,7 @@ function App() {
                 <HeaderSection />
                 <RouteComponent />
                 <FooterSection />
+                <ButtomNavbar />
             </loginContext.Provider>
         </div>
     );

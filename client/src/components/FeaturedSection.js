@@ -45,7 +45,7 @@ function FeaturedSection() {
                                 slidesPerView: 1,
                                 spaceBetween: 10,
                             },
-                            "@0.50": {
+                            "@0.60": {
                                 slidesPerView: 2,
                                 spaceBetween: 20,
                             },

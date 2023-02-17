@@ -47,11 +47,11 @@ function HomeSection() {
                                     slidesPerView: 1,
                                     spaceBetween: 10,
                                 },
-                                "@0.50": {
+                                "@0.40": {
                                     slidesPerView: 2,
                                     spaceBetween: 20,
                                 },
-                                "@1.20": {
+                                "@0.70": {
                                     slidesPerView: 3,
                                     spaceBetween: 40,
                                 },

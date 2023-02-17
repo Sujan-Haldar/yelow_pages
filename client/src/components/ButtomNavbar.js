@@ -1,14 +1,18 @@
+import { NavLink } from "react-router-dom";
 /* eslint-disable jsx-a11y/anchor-has-content */
 function ButtomNavbar() {
-    return ( 
+    return (
         <nav class="bottom-navbar">
-            <a href="#home" class="fas fa-home"></a>
-            <a href="#featured" class="fas fa-list"></a>
-            <a href="#arrivals" class="fas fa-tags"></a>
-            <a href="#reviews" class="fas fa-comments"></a>
-            <a href="#blogs" class="fas fa-blog"></a>
+            <NavLink to="/" className="fa fa-home"></NavLink>
+            <NavLink to="/books" className="fas fa-list"></NavLink>
+            <NavLink
+                to="/bookdonationform"
+                className="fa fa-handshake-o"
+            ></NavLink>
+            <NavLink to="/reviews" className="fas fa-comments"></NavLink>
+            <NavLink to="/myprofile" className="fa fa-user"></NavLink>
         </nav>
-     );
+    );
 }
 
 export default ButtomNavbar;
