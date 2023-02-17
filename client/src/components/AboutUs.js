@@ -80,8 +80,8 @@ function AboutUs() {
                 need in future and where they can also collect there necessary
                 books if available. <br />
                 <br />
-                We aim to promote
                 <ul>
+                    We aim to promote
                     <li>literacy and love of reading.</li>
                     <li>Help the Environment by Recycling.</li>
                     <li>Sharing favourite stories with others.</li>

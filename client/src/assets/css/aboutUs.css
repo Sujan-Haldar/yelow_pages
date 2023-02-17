@@ -14,9 +14,14 @@
     font-size: 2rem;
     margin: 2rem 1rem;
     text-align: justify;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 .aboutus .content ul {
     margin-left: 100px;
+    text-align: justify;
 }
 .heading1::before {
     content: "";
