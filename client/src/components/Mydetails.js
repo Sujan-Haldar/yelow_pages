@@ -20,10 +20,10 @@ function Mydetails() {
         const fetchDetails = async () => {
             try {
                 const { data } = await axios.get(
-                    `http://localhost:3030/users/${_id}`,
+                    `${process.env.REACT_APP_API_URL}/users/${_id}`,
                     headers()
                 );
-                console.log(data);
+                // console.log(data);
                 const { name, email, address, gender, profilePicSrc } = data;
                 setName(name);
                 setEmail(email);
