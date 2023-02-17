@@ -1,5 +1,6 @@
 import faceboookImg from "../../image/facebook.png";
 import linkdinImg from "../../image/linkedin.png";
+import { Link } from "react-router-dom";
 
 function Member({ memberDetails }) {
     const { name, dept, college, mobile, email, fbLink, ldLink, image } =
@@ -16,18 +17,20 @@ function Member({ memberDetails }) {
                 <br />
                 <p>{dept}</p>
                 <p>{college}</p>
-                <p>Mobile Number: {mobile}</p>
+                <Link to={`https://wa.me/91${mobile}`} target="_blank">
+                    <p>Mobile Number: {mobile}</p>
+                </Link>
                 <a href={`mailto:${email}`}>
                     <p>Email Id: {email}</p>
                 </a>
                 <br />
                 <div class="facebook">
-                    <a href={fbLink}>
+                    <Link to={fbLink} target="_blank">
                         <img src={faceboookImg} alt="Example" />
-                    </a>
-                    <a href={ldLink}>
+                    </Link>
+                    <Link to={ldLink} target="_blank">
                         <img src={linkdinImg} alt="Example" />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

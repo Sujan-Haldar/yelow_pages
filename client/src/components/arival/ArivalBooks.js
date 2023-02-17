@@ -1,7 +1,7 @@
 import React from "react";
 import ArivalBook from "./ArivalBook";
 
-import { Navigation } from "swiper";
+import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -16,7 +16,7 @@ function ArivalBooks({ books }) {
                     slidesPerView={3}
                     spaceBetween={30}
                     rewind={true}
-                    modules={[Navigation]}
+                    modules={[Autoplay]}
                     autoplay={{
                         delay: 1000,
                         disableOnInteraction: false,
