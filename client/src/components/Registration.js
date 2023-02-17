@@ -21,7 +21,7 @@ function Registration() {
             const data = {
                 gender,name,email,password,phone,address
             }
-            mainSubmitForm("http://localhost:3030/users",data,false,null,toastId)
+            mainSubmitForm(`${process.env.REACT_APP_API_URL}/users`,data,false,null,toastId)
             .then(({data})=>{
                 navigate("/verify-account")
             })

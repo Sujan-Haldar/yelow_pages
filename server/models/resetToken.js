@@ -11,8 +11,8 @@ const resetTokens = new mongoose.Schema({
     },
     expire_at : {
         type : Date,
-        default : Date.now(),
-        expires : "5m"
+        default : Date.now(new Date().valueOf()+ 600000),
+        expires : 500
     }
 })
 

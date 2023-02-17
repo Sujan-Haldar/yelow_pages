@@ -17,7 +17,7 @@ function ReviewForm() {
             rating,
             content,
         };
-         mainSubmitForm("http://localhost:3030/reviews", data, true,headers(),toastId);
+         mainSubmitForm(`${process.env.REACT_APP_API_URL}/reviews`, data, true,headers(),toastId);
     };
     return (
         <div class="login-form-container active">

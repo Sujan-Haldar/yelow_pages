@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default function sendEmail(email){
-    return axios.post("http://localhost:3030/verify-account",{email})
+    return axios.post(`${process.env.REACT_APP_API_URL}/verify-account`,{email})
 }

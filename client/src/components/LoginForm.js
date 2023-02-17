@@ -20,7 +20,7 @@ function LoginForm() {
                 username,
                 password,
             };
-            const res = await axios.post("http://localhost:3030/login", data);
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, data);
             if (res.data.token) {
                 setHeaderAtLocalStorage(res.data.token);
                 setIsLogedin(authentication());
