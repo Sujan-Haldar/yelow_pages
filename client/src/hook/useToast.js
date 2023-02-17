@@ -24,11 +24,11 @@ export function updateLoadingSucessToast(
         render: message,
         type: "success",
         isLoading: false,
-        autoClose:2000,
-        closeOnClick:true,
-        pauseOnHover:true,
-        draggable:true,
-        progress:undefined
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
     });
 }
 export function updateLoadingFailureToast(
@@ -45,11 +45,11 @@ export function updateLoadingFailureToast(
         render: message,
         type: "error",
         isLoading: false,
-        autoClose:2000,
-        closeOnClick:true,
-        pauseOnHover:true,
-        draggable:true,
-        progress:undefined
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
     });
 }
 
@@ -60,7 +60,7 @@ export function promiseToast(promise, successMessage) {
         error: {
             render({ data }) {
                 if (typeof data === "string") return data;
-                return data.response.data.message;
+                return data.response.data.message || data.response.data;
             },
         },
     });
