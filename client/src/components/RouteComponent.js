@@ -12,7 +12,7 @@ import LoginForm from "./LoginForm";
 import Mydetails from "./Mydetails";
 import DonatedBooks from "./MyProfile/donatedBooks";
 import WishlistBooks from "./MyProfile/wishlistBooks";
-import { OutletComponentTrue } from "./OutletComponent";
+import { PrivateRoute } from "./OutletComponent";
 import PageNotFound from "./PageNotFound";
 import Registration from "./Registration";
 import ReviewForm from "./review/ReviewForm";
@@ -37,7 +37,13 @@ function RouteComponent() {
 
             <Route path="/books" element={<AllBooks />}></Route>
 
-            <Route path="/*" element={<OutletComponentTrue />}>
+            <Route path="/bookdonationform" element={<PrivateRoute><BookDonationForm /></PrivateRoute>}></Route>
+            <Route path="/feedback" element={<PrivateRoute><ReviewForm/></PrivateRoute>}></Route>
+            <Route path="/myprofile" element={<PrivateRoute><Mydetails /></PrivateRoute>}></Route>
+            <Route path="/my-donated-books" element={<PrivateRoute><DonatedBooks /></PrivateRoute>}></Route>
+            <Route path="/my-wishlist" element={<PrivateRoute><WishlistBooks /></PrivateRoute>}></Route>
+
+            {/* <Route path="/*" element={<OutletComponentTrue />}>
                 <Route path="bookdonationform" element={<BookDonationForm />} />
                 <Route path="feedback" element={<ReviewForm />}></Route>
                 <Route path="myprofile" element={<Mydetails />}></Route>
@@ -46,7 +52,8 @@ function RouteComponent() {
                     element={<DonatedBooks />}
                 ></Route>
                 <Route path="my-wishlist" element={<WishlistBooks />}></Route>
-            </Route>
+            </Route> */}
+
             {getToken() && getToken().isAdmin ? (
                 <>
                     <Route

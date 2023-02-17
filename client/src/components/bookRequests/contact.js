@@ -3,7 +3,7 @@ import { promiseToast } from "../../hook/useToast";
 import getUser from "../userRequests/getUser";
 
 const Contact = book => {
-    promiseToast(handleContact(book), "Added to Wishlist");
+    promiseToast(handleContact(book));
 };
 
 const handleContact = async book => {

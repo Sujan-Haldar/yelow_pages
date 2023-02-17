@@ -212,7 +212,7 @@ function Mydetails() {
                             onChange={e => setAddress(e.target.value)}
                         />
                     </div>
-                    <InputTypeSubmit value="edit" />
+                    <InputTypeSubmit value="Update" />
                 </form>
             </div>
         </div>
