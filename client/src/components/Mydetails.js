@@ -41,7 +41,7 @@ function Mydetails() {
         const data = { name, email, gender, address };
         try {
             const res = await axios.put(
-                `http://localhost:3030/users/${_id}`,
+                `${process.env.REACT_APP_API_URL}/users/${_id}`,
                 data,
                 headers()
             );
