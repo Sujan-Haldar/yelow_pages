@@ -1,5 +1,6 @@
 import faceboookImg from "../../image/facebook.png";
 import linkdinImg from "../../image/linkedin.png";
+
 function Member({ memberDetails }) {
     const { name, dept, college, mobile, email, fbLink, ldLink, image } =
         memberDetails;
@@ -16,7 +17,9 @@ function Member({ memberDetails }) {
                 <p>{dept}</p>
                 <p>{college}</p>
                 <p>Mobile Number: {mobile}</p>
-                <p>Email Id: {email}</p>
+                <a href={`mailto:${email}`}>
+                    <p>Email Id: {email}</p>
+                </a>
                 <br />
                 <div class="facebook">
                     <a href={fbLink}>
