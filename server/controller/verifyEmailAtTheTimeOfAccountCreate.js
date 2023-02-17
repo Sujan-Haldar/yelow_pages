@@ -1,6 +1,7 @@
 const {transporter, mailOptions, sendMail} = require("../utilities/sendMail")
 const ResetToken = require("../models/resetToken");
-const crypto = require("crypto")
+// const crypto = require("crypto");
+const randomstring = require("randomstring");
 const {User} = require("../models/user")
 const sendEmailForAccountVerification = async (req,res,next)=>{
     const {email} = req.body;
@@ -10,8 +11,12 @@ const sendEmailForAccountVerification = async (req,res,next)=>{
     if(!user) return res.status(400).json({ message: "Invalid email." });
 
     const myTransporter = transporter();
-    const token = crypto.randomBytes(32).toString('hex');
-    const text = `http://localhost:3000/verify-account/${token}`;
+    // const token = crypto.randomBytes(32).toString('hex');
+    const token = randomstring.generate({
+        length: 50,
+        charset: 'alphanumeric'
+      });
+    const text = `${process.env.MAIN_WEBSITE_URL}/verify-account/${token}`;
 
     const myMailOptions = mailOptions(email,'Verify Email',text);
 

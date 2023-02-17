@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import getUser from "../userRequests/getUser";
 import _ from "lodash";
-import getProfilePic from "../userRequests/getProfilePic";
-import Button from "../common/button";
+import { useEffect, useState } from "react";
 import { getToken } from "../../hook/useLogin";
+import Button from "../common/button";
+import getProfilePic from "../userRequests/getProfilePic";
+import getUser from "../userRequests/getUser";
 
 const Review = ({ review, onDelete }) => {
     const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ const Review = ({ review, onDelete }) => {
                 src={
                     user
                         ? getProfilePic(user)
-                        : "http://localhost:3030/default_images/man.png"
+                        : `${process.env.REACT_APP_API_URL}/default_images/man.png`
                 }
                 alt="Profile Pic"
             />

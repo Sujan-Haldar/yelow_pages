@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getAllBooks = () => {
-    return axios.get("http://localhost:3030/books");
+    return axios.get(`${process.env.REACT_APP_API_URL}/books`);
 };
 
 export default getAllBooks;

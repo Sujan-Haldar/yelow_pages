@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getAllUsers = () => {
-    return axios.get("http://localhost:3030/users");
+    return axios.get(`${process.env.REACT_APP_API_URL}/users`);
 };
 
 export default getAllUsers;

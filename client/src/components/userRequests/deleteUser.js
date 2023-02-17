@@ -7,7 +7,7 @@ const DeleteUser = user => {
 };
 
 const handleDelete = async id => {
-    await axios.delete(`http://localhost:3030/users/${id}`, headers());
+    await axios.delete(`${process.env.REACT_APP_API_URL}/users/${id}`, headers());
 };
 
 export default DeleteUser;
