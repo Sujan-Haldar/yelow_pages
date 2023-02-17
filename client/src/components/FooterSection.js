@@ -25,11 +25,11 @@ function FooterSection() {
                 </div>
                 <div className="box">
                     <h3>contact info</h3>
-                    <Link to="/">
+                    <Link to="https://wa.me/918637546585">
                         {" "}
                         <i className="fas fa-phone"></i> +91 8637546585{" "}
                     </Link>
-                    <Link to="/">
+                    <Link to="https://wa.me/919564714174">
                         {" "}
                         <i className="fas fa-phone"></i> +91 9564714174{" "}
                     </Link>
