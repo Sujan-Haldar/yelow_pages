@@ -17,7 +17,7 @@ const generateTokenAndSend = async (req,res,next) =>{
       const myTransporter = transporter()
 
       const token = randomstring.generate({
-        length: 50,
+        length: 100,
         charset: 'alphanumeric'
       });
 

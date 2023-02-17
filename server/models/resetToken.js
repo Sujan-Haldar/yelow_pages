@@ -9,11 +9,11 @@ const resetTokens = new mongoose.Schema({
         type : String,
         required : true
     },
-    expire_at : {
-        type : Date,
-        default : Date.now(new Date().valueOf()+ 600000),
-        expires : 500
-    }
-})
+    // expireAt : {
+    //     type : Date,
+    //     default : Date.now(new Date().valueOf()+ 600000),
+    //     expires : 500
+    // }
+},{ timestamps: true })
 
 module.exports = mongoose.model("resetToken",resetTokens)

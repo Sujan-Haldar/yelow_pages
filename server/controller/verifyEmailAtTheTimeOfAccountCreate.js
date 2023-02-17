@@ -13,7 +13,7 @@ const sendEmailForAccountVerification = async (req,res,next)=>{
     const myTransporter = transporter();
     // const token = crypto.randomBytes(32).toString('hex');
     const token = randomstring.generate({
-        length: 50,
+        length: 100,
         charset: 'alphanumeric'
       });
     const text = `${process.env.MAIN_WEBSITE_URL}/verify-account/${token}`;
