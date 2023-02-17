@@ -2,15 +2,16 @@ import { NavLink } from "react-router-dom";
 import { authentication, getToken } from "../hook/useLogin";
 import Button from "./common/button";
 import LoginIcon from "./header/LoginIcon";
+import logo from "../image/logo.png";
 
 function HeaderSection() {
     return (
         <header className="header">
             <div className="header-1 header-2">
-                <a href=" #" className="logo">
+                <NavLink to="/" className="logo">
                     {" "}
-                    <i className="fas fa-book"></i>yelow pages{" "}
-                </a>
+                    <img src={logo} alt="logo" /> <span>Yelow Pages</span>
+                </NavLink>
 
                 <nav className="navbar">
                     <NavLink
