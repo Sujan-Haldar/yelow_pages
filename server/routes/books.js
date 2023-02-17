@@ -18,10 +18,10 @@ router.get("/", getAllBooks);
 router.get("/:id", getBook);
 
 // Using Default Book Preview Image
-router.post("/", [auth, validateBody(validator)], postBook);
+// router.post("/", [auth, validateBody(validator)], postBook);
 
 // For Custom Book Preview Image Upload
-// router.post("/", [auth, bookUpload, validateBody(validator)], postBook);
+router.post("/", [auth, bookUpload, validateBody(validator)], postBook);
 
 router.put("/:id", [auth, bookOwner, validateBody(validator)], updateBook);
 router.delete("/:id", [auth, bookOwner], deleteBook);

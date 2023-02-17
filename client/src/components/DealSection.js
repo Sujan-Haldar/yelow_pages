@@ -1,19 +1,15 @@
-import deal_img from "../image/deal-img.jpg";
+import deal_img from "../image/dealbook.png";
 
 function DealSection() {
     return (
         <section className="deal">
-            <div className="content">
-                <h3>deal of the day</h3>
-                <h1>upto 50% off</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Unde perspiciatis in atque dolore tempora quaerat at fuga
-                    dolorum natus velit.
-                </p>
-                <a href="/" className="btn">
-                    shop now
-                </a>
+            <div class="content">
+                <h1>
+                    "Books and doors are the same thing. You open them, and you
+                    go through into another world."
+                </h1>
+                <br />
+                <span>– Jeanette Winterson</span>
             </div>
 
             <div className="image">

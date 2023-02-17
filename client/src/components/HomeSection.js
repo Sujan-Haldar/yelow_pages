@@ -1,28 +1,38 @@
 import Book from "./homesection/book";
 
 import stand from "../image/stand.png";
-import book1 from "../image/book-1.png";
-import book2 from "../image/book-2.png";
-import book3 from "../image/book-3.png";
-import book4 from "../image/book-4.png";
-import book5 from "../image/book-5.png";
+import { Link } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+import getAllBooks from "./bookRequests/getAllBooks";
 
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function HomeSection() {
+    const [books, setBooks] = useState(null);
+    useEffect(() => {
+        async function fetchBooks() {
+            const { data } = await getAllBooks();
+            setBooks(data);
+        }
+        fetchBooks();
+    }, []);
+
     return (
         <section className="home" id="home">
             <div className="row">
                 <div className="content">
-                    <h3>upto 75% off</h3>
-                    <p>
-                        Whatever The Cost of Our Libraries,The Price Is Cheaper
-                        Compared To That Of An Ignorant Nation
-                    </p>
-                    <a href="# " className="btn">
+                    <h1>
+                        " It's not how much we give, but how much love we put
+                        into giving."
+                    </h1>
+                    <span>- Mother Teresa</span>
+                    <br />
+                    <br />
+                    <Link to="/bookdonationform" class="btn">
                         donate
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="swiper books-slider">
@@ -38,24 +48,16 @@ function HomeSection() {
                                 disableOnInteraction: false,
                             }}
                         >
-                            <SwiperSlide>
-                                <Book preview={book1} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book2} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book3} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book4} />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <Book preview={book5} />
-                            </SwiperSlide>
+                            {books
+                                ? books.slice(0, 5).map(book => (
+                                      <SwiperSlide>
+                                          <Book book={book} />
+                                      </SwiperSlide>
+                                  ))
+                                : null}
                         </Swiper>
                     </div>
-                    <img src={stand} className="stand" alt="" />
+                    <img src={stand} className="stand" alt="stand" />
                 </div>
             </div>
         </section>

@@ -1,7 +1,7 @@
 const { Review } = require("../models/review");
 
 const getAllReviews = async (req, res) => {
-    res.send(await Review.find());
+    res.send(await Review.find().sort({ publishedTime: -1 }));
 };
 
 const getReview = async (req, res) => {
@@ -13,7 +13,9 @@ const getReview = async (req, res) => {
 const postReview = async (req, res) => {
     const review = new Review({
         user: req.user._id,
+        rating: req.body.rating,
         content: req.body.content,
+        publishedTime: Date.now(),
     });
 
     await review.save();

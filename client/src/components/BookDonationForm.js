@@ -1,57 +1,111 @@
-// import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import mainSubmitForm from "../hook/useForm";
+import { headers } from "../hook/useLogin";
 import donatebookLogo from "../image/donatebook.png";
+import getBookPageLink from "./bookRequests/getBookPageLink";
 import InputTypeFile from "./fromElement/InputTypeFile";
 import InputTypeSelect from "./fromElement/InputTypeSelect";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
 import InputTypeText from "./fromElement/InputTypeText";
-// import PreviewImage from "./fromElement/PreviewImage";
 function BookDonationForm() {
-    const [bookName,setBookName] = useState("");
-    const [authorName,setAuthorName] = useState("");
-    const [bookDetails,setBookDetails] = useState("");
-    const [bookCondition,setBookCondition] = useState("Poor");
-    const [bookImg,setBookImg] = useState(null)
-    const submitForm = async(e)=>{
-        e.preventDefault()
-        try {
-            const formData = new FormData();
-            formData.append("title", bookName);
-            formData.append("author", authorName);
-            formData.append("publishYear", 2020);
-            formData.append("file", bookImg); 
+    const [bookName, setBookName] = useState("");
+    const [authorName, setAuthorName] = useState("");
+    const [bookDetails, setBookDetails] = useState("");
+    const [bookCondition, setBookCondition] = useState("");
+    const [publishYear, setPublishYear] = useState(null);
+    const [bookImg, setBookImg] = useState(null);
+    const navigate = useNavigate();
+    const toastId = useRef(null);
+    const submitForm = e => {
+        toastId.current = toast.loading("Please Wait...")
+        e.preventDefault();
+        const header = headers();
+        header["Content-Type"] = "multipart/form-data";
 
-            const res = await axios.post("http://localhost:3030/books",formData)
-            console.log(res)
-        } catch (error) {
-            console.log(error) 
-        }
-        
+        const formData = new FormData();
+        formData.append("title", bookName);
+        formData.append("author", authorName);
+        formData.append("publishYear", publishYear);
+        formData.append("bookCondition", bookCondition);
+        formData.append("bookDetails", bookDetails);
+        formData.append("file", bookImg);
 
-    }
-    return ( 
+        mainSubmitForm(
+            `${process.env.REACT_APP_API_URL}/books`,
+            formData,
+            true,
+            header,toastId
+        ).then(({ data }) => {
+            navigate(getBookPageLink(data));
+        });
+    };
+
+    return (
         <div className="login-form-container">
-        <form action="" onSubmit={submitForm}>
-            <img src={donatebookLogo} alt="Check your internet" width="100px" style={{"display": "block", "margin": "auto"}}/>
-            <h3>Donate Books</h3><br/>
+            <form action="" onSubmit={submitForm}>
+                <img
+                    src={donatebookLogo}
+                    alt="Check your internet"
+                    width="100px"
+                    style={{ display: "block", margin: "auto" }}
+                />
+                <h3>Donate Books</h3>
+                <br />
 
-            <InputTypeText inputName ="Book Name" type="text" name="" placeholder="enter Book name" required={true} id="" value = {bookName} setValue = {setBookName}/>
+                <InputTypeText
+                    inputName="Book Name"
+                    type="text"
+                    placeholder="Enter Book name"
+                    required={true}
+                    id=""
+                    value={bookName}
+                    setValue={setBookName}
+                />
 
-            <InputTypeText inputName ="Author Name" type="text" name="" placeholder="enter author name" required={true} id="" value = {authorName} setValue= {setAuthorName}/>
+                <InputTypeText
+                    inputName="Author Name"
+                    type="text"
+                    placeholder="Enter author name"
+                    required={true}
+                    id=""
+                    value={authorName}
+                    setValue={setAuthorName}
+                />
 
-            <InputTypeText inputName ="Book Details" type="text" name="" placeholder="enter book details" required={true} id="" value={bookDetails} setValue={setBookDetails}/>
+                <InputTypeText
+                    inputName="Book Details"
+                    type="text"
+                    placeholder="Enter book details"
+                    required={true}
+                    id=""
+                    value={bookDetails}
+                    setValue={setBookDetails}
+                />
 
-            <InputTypeSelect value = {bookCondition} setValue = {setBookCondition}/>
+                <InputTypeText
+                    inputName="Publish Year"
+                    type="text"
+                    placeholder="Publish year"
+                    required={true}
+                    id=""
+                    value={publishYear}
+                    setValue={setPublishYear}
+                />
 
-            <InputTypeFile setBookImg = {setBookImg}/>
-            
-            {/* <PreviewImage file = {URL.createObjectURL(bookImg)}/> */}
-            <InputTypeSubmit value="Donate"/>
-        </form>
+                <InputTypeSelect
+                    value={bookCondition}
+                    setValue={setBookCondition}
+                />
 
-    </div>
- );
+                <InputTypeFile setBookImg={setBookImg} />
+
+                {/* <PreviewImage file = {URL.createObjectURL(bookImg)}/> */}
+                <InputTypeSubmit value="Donate" />
+            </form>
+        </div>
+    );
 }
 
 export default BookDonationForm;

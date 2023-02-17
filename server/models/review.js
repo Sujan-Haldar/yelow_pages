@@ -7,16 +7,20 @@ const reviewSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
+    rating: {
+        type: Number,
+        required: true,
+        default: 1,
+    },
     content: {
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 255,
+        maxlength: 500,
     },
     publishedTime: {
         type: Date,
         required: true,
-        default: new Date(),
     },
 });
 
@@ -24,7 +28,7 @@ const Review = mongoose.model("Review", reviewSchema);
 
 const validator = async review => {
     const schema = yup.object({
-        content: yup.string().required().min(5).max(255),
+        content: yup.string().required().min(5).max(500),
     });
 
     return schema.validate(review).catch(err => err);

@@ -3,11 +3,13 @@ const Wishlist = require("../models/wishlist");
 const bcrypt = require("bcrypt");
 
 const getAllUsers = async (req, res) => {
-    res.send(await User.find());
+    res.send(await User.find().select("-password"));
 };
 
 const getUser = async (req, res) => {
-    const user = await User.findOne({ _id: req.params.id });
+    const user = await User.findOne({ _id: req.params.id }).select(
+        "-password -isAdmin"
+    );
     if (!user) return res.status(404).send("User Not Found!");
     res.send(user);
 };
@@ -24,9 +26,8 @@ const postUser = async (req, res) => {
         gender: req.body.gender,
         phone: req.body.phone,
         password: hash,
-        isAdmin: req.body.isAdmin,
         address: req.body.address,
-        profilePicSrc: req.body.profilePicSrc,
+        profilePicSrc: req.body.gender === "female" ? "woman.png" : "man.png",
     });
 
     const wishlist = new Wishlist({
@@ -38,7 +39,9 @@ const postUser = async (req, res) => {
     await wishlist.save();
     await user.save();
 
-    res.send(user);
+    const token = await user.generateAuthToken();
+
+    res.json({ user, token });
 };
 
 const deleteUser = async (req, res) => {
@@ -56,10 +59,16 @@ const updateUser = async (req, res) => {
     }
 
     let passwordChanged = false;
-    if (!(await User.findOne({ password: req.body.password }))) {
+    if (
+        req.body.password &&
+        !(await User.findOne({ password: req.body.password }))
+    ) {
         req.body.password = await bcrypt.hash(req.body.password, 15);
         passwordChanged = true;
     }
+
+    req.body.profilePicSrc =
+        req.body.gender === "female" ? "woman.png" : "man.png";
 
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,

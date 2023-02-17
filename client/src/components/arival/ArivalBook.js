@@ -1,23 +1,23 @@
-import book1 from "../../image/book-1.png";
-function ArivalBook() {
-    const hrefOfBook = '/'
+import { NavLink } from "react-router-dom";
+import { ArivalContent } from "../../assets/css/Element.style";
+import getBookImg from "../bookRequests/getBookImg";
+import getBookPageLink from "../bookRequests/getBookPageLink";
+function ArivalBook({ book }) {
     return (
-        <a href={hrefOfBook} className="swiper-slide box">
+        <NavLink to={getBookPageLink(book)} className="swiper-slide box">
             <div className="image">
-                <a href={hrefOfBook}><img src={book1} alt=""/></a>
+                <NavLink to={getBookPageLink(book)}>
+                    <img src={getBookImg(book)} alt="" />
+                </NavLink>
             </div>
-            <div classNameName="content">
-                <h3>new arrivals</h3>
-                <div className="price">$15.99 <span>$20.99</span></div>
-                <div className="stars">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star-half-alt"></i>
+            
+            <ArivalContent>
+                <h3>{book.title}</h3>
+                <div>
+                    <span>{book.author}</span>
                 </div>
-            </div>
-        </a>
+            </ArivalContent>
+        </NavLink>
     );
 }
 

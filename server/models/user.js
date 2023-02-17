@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     gender: {
         type: String,
+        requied: true,
     },
     phone: {
         type: Number,
@@ -36,13 +37,13 @@ const userSchema = new mongoose.Schema({
     profilePicSrc: {
         type: String,
         required: true,
-        default: function () {
-            this.gender === "female"
-                ? "https://img.favpng.com/5/1/21/computer-icons-user-profile-avatar-female-png-favpng-cqykKc0Hpkh65ueWt6Nh2KFvS.jpg"
-                : "https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png";
-        },
     },
     isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    isVerified: {
         type: Boolean,
         required: true,
         default: false,
@@ -63,10 +64,10 @@ const validator = user => {
     const userBody = yup.object({
         name: yup.string().required().min(3).max(20),
         email: yup.string().email().required(),
-        password: yup.string().required().min(8).max(255),
+        password: yup.string().min(8).max(255),
         address: yup.string().required().min(5),
         gender: yup.string(),
-        phone: yup.number().min(10).max(10),
+        phone: yup.number().test(val => val.toString().length === 10),
     });
 
     return userBody.validate(user).catch(err => err);

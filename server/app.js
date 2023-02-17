@@ -8,12 +8,15 @@ const users = require("./routes/users");
 const wishlists = require("./routes/wishlists");
 const reviews = require("./routes/reviews");
 const login = require("./routes/login");
+const forgetPassword = require("./routes/forget-password")
+const verifyAccount = require("./routes/verify-account")
 
 //Internal imports
 const {
     notFoundError,
     errorHandelar,
 } = require("./middleware/common/errorHandelar");
+const auth = require("./middleware/permission/auth");
 
 //express app
 const app = express();
@@ -40,6 +43,10 @@ app.use(
     "/bookimage",
     express.static(path.join(__dirname, "public/uploads/bookImage/"))
 );
+app.use(
+    "/default_images",
+    express.static(path.join(__dirname, "public/uploads/default_images/"))
+);
 
 //
 
@@ -56,6 +63,15 @@ app.use("/users", users);
 app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
 app.use("/login", login);
+app.use("/forget-password",forgetPassword)
+app.use("/verify-account",verifyAccount)
+app.get("/verify-Login", auth, (req, res) => {
+    console.log(req.user);
+    res.json({
+        isLogedin: true,
+        user: req.user._id,
+    });
+});
 
 //
 
