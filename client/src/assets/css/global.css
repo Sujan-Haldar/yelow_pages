@@ -623,6 +623,8 @@ section {
 
 .allreviews .box {
     width: 30%;
+    word-wrap: break-word;
+    overflow: hidden;
     height: fit-content;
 }
 
