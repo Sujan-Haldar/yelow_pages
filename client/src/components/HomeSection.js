@@ -42,6 +42,20 @@ function HomeSection() {
                             spaceBetween={20}
                             rewind={true}
                             modules={[Autoplay]}
+                            breakpoints={{
+                                "@0.00": {
+                                    slidesPerView: 1,
+                                    spaceBetween: 10,
+                                },
+                                "@0.40": {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20,
+                                },
+                                "@0.70": {
+                                    slidesPerView: 3,
+                                    spaceBetween: 40,
+                                },
+                            }}
                             className="mySwiper"
                             autoplay={{
                                 delay: 1000,

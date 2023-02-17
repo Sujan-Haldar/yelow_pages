@@ -21,10 +21,10 @@
 }
 .aboutus .content ul {
     text-align: justify;
-    margin-left: 100px;
+    margin-left: 10%;
 }
 .aboutus .content li {
-    margin-left: 200px;
+    margin-left: 10%;
 }
 .heading1::before {
     content: "";

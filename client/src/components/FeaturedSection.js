@@ -40,6 +40,20 @@ function FeaturedSection() {
                             delay: 1000,
                             disableOnInteraction: false,
                         }}
+                        breakpoints={{
+                            "@0.00": {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                            },
+                            "@0.60": {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            },
+                            "@1.00": {
+                                slidesPerView: 3,
+                                spaceBetween: 40,
+                            },
+                        }}
                         className="mySwiper"
                     >
                         {books
