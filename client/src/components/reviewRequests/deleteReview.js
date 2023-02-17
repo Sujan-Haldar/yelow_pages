@@ -7,7 +7,7 @@ const DeleteReview = review => {
 };
 
 const handleDelete = async id => {
-    await axios.delete(`http://localhost:3030/reviews/${id}`, headers());
+    await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/${id}`, headers());
 };
 
 export default DeleteReview;

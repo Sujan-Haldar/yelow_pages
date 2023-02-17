@@ -12,7 +12,7 @@ const handleUpdateWishlist = async book => {
     const user = await getUser(getToken()._id);
     if (book.donatedBy === user._id)
         return Promise.reject("You Can't Add Your Own Book to Wishlist!");
-    await axios.put(`http://localhost:3030/wishlists/${user.wishlist}`, {
+    await axios.put(`${process.env.REACT_APP_API_URL}/wishlists/${user.wishlist}`, {
         book: book._id,
     });
 };

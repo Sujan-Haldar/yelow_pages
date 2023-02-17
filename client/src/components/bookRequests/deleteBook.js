@@ -7,7 +7,7 @@ const DeleteBook = book => {
 };
 
 const handleDelete = async id => {
-    await axios.delete(`http://localhost:3030/books/${id}`, headers());
+    await axios.delete(`${process.env.REACT_APP_API_URL}/books/${id}`, headers());
 };
 
 export default DeleteBook;

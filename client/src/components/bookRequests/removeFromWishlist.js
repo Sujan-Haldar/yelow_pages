@@ -9,7 +9,7 @@ const RemoveFromWishlist = book => {
 
 const handleRemove = async book_id => {
     const user = await getUser(getToken()._id);
-    await axios.delete(`http://localhost:3030/wishlists/${user.wishlist}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/wishlists/${user.wishlist}`, {
         book: book_id,
     });
 };

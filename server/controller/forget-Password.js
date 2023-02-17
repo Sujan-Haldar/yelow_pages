@@ -1,6 +1,7 @@
 const {User} = require("../models/user")
 const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+// const crypto = require('crypto');
+const randomstring = require("randomstring");
 const ResetToken = require("../models/resetToken")
 const bcrypt = require("bcrypt")
 const createError = require('http-errors');
@@ -15,9 +16,12 @@ const generateTokenAndSend = async (req,res,next) =>{
 
       const myTransporter = transporter()
 
-      const token = crypto.randomBytes(32).toString('hex');
+      const token = randomstring.generate({
+        length: 50,
+        charset: 'alphanumeric'
+      });
 
-      const text = `http://localhost:3000/forget-pasword/${token}`
+      const text = `${process.env.MAIN_WEBSITE_URL}/forget-pasword/${token}`
 
       const myMailOptions = mailOptions(email,'Password Reset Request',text);
       

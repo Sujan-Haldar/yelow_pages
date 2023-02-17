@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getReviews = async () => {
-    const { data: reviews } = await axios.get("http://localhost:3030/reviews");
+    const { data: reviews } = await axios.get(`${process.env.REACT_APP_API_URL}/reviews`);
     return reviews;
 };
 
