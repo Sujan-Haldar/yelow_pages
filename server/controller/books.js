@@ -27,7 +27,7 @@ const postBook = async (req, res) => {
     res.send(book);
 };
 
-const deleteBook = async (req, res) => {
+const deleteBook = async (req, res,next) => {
     const book = await Book.findByIdAndRemove(req.params.id);
     const {previewImgSrc} = book;
     if(previewImgSrc){
