@@ -14,7 +14,7 @@ const handleContact = async book => {
     // if (donor && user) {
     const email_subject = "Request to Collect Donated Book";
     const email_body = `Hello! ${donor.name},
-        I'm ${user.name} from "${user.address}". I have seen your post on **Yelow Pages** about your book "${book.title}" written by "${book.author}" and I intrested to get the book. So, if the book is still available kindly give a response to this email.   
+        I'm ${user.name} from "${user.address}". I have seen your post on **Yelow Pages** about your book "${book.title}" written by "${book.author}" and I am intrested to get the book. So, if the book is still available kindly give a response to this email.   
                                     Thank You
                                     ${user.name}`;
     // }
