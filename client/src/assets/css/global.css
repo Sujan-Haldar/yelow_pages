@@ -622,7 +622,9 @@ section {
 }
 
 .allreviews .box {
-    width: 30%;
+    width: 400px;
+    word-wrap: break-word;
+    overflow: hidden;
     height: fit-content;
 }
 

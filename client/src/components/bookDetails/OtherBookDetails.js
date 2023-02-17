@@ -19,7 +19,7 @@ function OtherBookDetails({ book }) {
         getDonor();
     }, [book.donatedBy]);
 
-    let email = "Not Provided";
+    let email = "Unavailable";
     let address = "Unknown";
     let id = "Unknown";
     // let phone = "Not Provided";
