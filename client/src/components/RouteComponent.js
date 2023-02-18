@@ -7,6 +7,7 @@ import AllUsersAdmin from "./admin Section/allUsersAdmin";
 import AllBooks from "./AllBooks";
 import BookDetails from "./BookDetails";
 import BookDonationForm from "./BookDonationForm";
+import BookRequestForm from "./BookRequestFrom";
 import ForgetPassword from "./ForgetPassword";
 import LoginForm from "./LoginForm";
 import Mydetails from "./Mydetails";
@@ -38,6 +39,7 @@ function RouteComponent() {
             <Route path="/books" element={<AllBooks />}></Route>
 
             <Route path="/bookdonationform" element={<PrivateRoute><BookDonationForm /></PrivateRoute>}></Route>
+            <Route path="/bookrequestform" element={<PrivateRoute><BookRequestForm /></PrivateRoute>}></Route>
             <Route path="/feedback" element={<PrivateRoute><ReviewForm/></PrivateRoute>}></Route>
             <Route path="/myprofile" element={<PrivateRoute><Mydetails /></PrivateRoute>}></Route>
             <Route path="/my-donated-books" element={<PrivateRoute><DonatedBooks /></PrivateRoute>}></Route>
