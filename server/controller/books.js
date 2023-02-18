@@ -1,9 +1,11 @@
 const { Book } = require("../models/book");
 const { unlink } =  require("fs");
 const {ReqBook} = require("../models/reqBook")
+const {User} = require("../models/user")
 const getAllBooks = async (req, res) => {
     res.send(await Book.find());
 };
+const {transporter, mailOptions, sendMail} = require("../utilities/sendMail")
 const path = require("path")
 const getBook = async (req, res) => {
     const book = await Book.findOne({ _id: req.params.id });
@@ -28,14 +30,19 @@ const postBook = async (req, res) => {
 
     const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
     if(requestedBookFindByTittle){
-        
+        const user = requestedBookFindByTittle[0].requestedBy;
+        if(user) {
+            const email = User.findById(user.email);
+            const myTransporter = transporter();
+            const myMailOptions = mailOptions(email,'Book is available',`your requested book is now available at ${process.env.MAIN_WEBSITE_URL}`);
+            myTransporter.sendMail(myMailOptions, (err) => {
+                if (err) {
+                   return res.send(book);
+                }
+                return res.send(book);
+              });
+        }
     }
-
-
-
-
-
-
 
     res.send(book);
 };
