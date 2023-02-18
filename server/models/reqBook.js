@@ -23,7 +23,7 @@ const reqBookSchema = new mongoose.Schema({
     previewImgSrc: {
         type: String,
         required: true,
-        default: "https://pngimg.com/d/reqBook_PNG2111.png",
+        default: "book-default.png",
     },
 });
 
