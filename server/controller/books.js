@@ -6,6 +6,9 @@ const getAllBooks = async (req, res) => {
     res.send(await Book.find());
 };
 const {transporter, mailOptions, sendMail} = require("../utilities/sendMail")
+const accountSid = 'ACd2379738b4e5e3195c43ff7f37855e6a';
+const authToken = '9031814424c5419ae95788f629d4eb5d';
+const client = require('twilio')(accountSid, authToken);
 const path = require("path")
 const getBook = async (req, res) => {
     const book = await Book.findOne({ _id: req.params.id });
@@ -42,6 +45,21 @@ const postBook = async (req, res) => {
         if(userId) {
             const user = await User.findById(userId);
             const email = user.email;
+            try{
+            const phone = user.phone;
+            // const phoneNumber = `+91${phone}`
+            client.messages
+            .create({
+                body: `your requested book is now available at ${process.env.MAIN_WEBSITE_URL}/books/${book._id}`,
+                from: '+15173764397',
+                to: `+91${phone}`
+            })
+            .then(message => console.log(`${message.sid} Message sended`));} catch(ex){
+                console.log("Phone")
+            }
+
+
+
             const myTransporter = transporter();
             const myMailOptions = mailOptions(email,'Book is available',`your requested book is now available at ${process.env.MAIN_WEBSITE_URL}/books/${book._id}`);
             myTransporter.sendMail(myMailOptions, (err) => {
