@@ -1,5 +1,6 @@
 const { Book } = require("../models/book");
-const { unlink } = require("fs");
+const { unlink } =  require("fs");
+const {ReqBook} = require("../models/reqBook")
 const getAllBooks = async (req, res) => {
     res.send(await Book.find());
 };
@@ -24,6 +25,18 @@ const postBook = async (req, res) => {
     if (req.files.length > 0) book.previewImgSrc = req.files[0].filename;
 
     await book.save();
+
+    const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
+    if(requestedBookFindByTittle){
+        
+    }
+
+
+
+
+
+
+
     res.send(book);
 };
 

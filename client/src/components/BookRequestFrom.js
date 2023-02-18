@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import mainSubmitForm from "../hook/useForm";
 import { headers } from "../hook/useLogin";
 import donatebookLogo from "../image/donatebook.png";
 import InputTypeSubmit from "./fromElement/InputTypeSubmit";
@@ -15,18 +16,19 @@ function BookRequestForm() {
         e.preventDefault();
         const header = headers();
         const data = {
-            tittle : bookName,
+            title : bookName,
             author : authorName
         }
         console.log(data)
-        // mainSubmitForm(
-        //     `${process.env.REACT_APP_API_URL}/books`,
-        //     data,
-        //     true,
-        //     header,toastId
-        // ).then(({ data }) => {
-        //     // navigate(getBookPageLink(data));
-        // });
+        mainSubmitForm(
+            `${process.env.REACT_APP_API_URL}/req-books`,
+            data,
+            true,
+            header,toastId
+        ).then(({ data }) => {
+            // navigate(getBookPageLink(data));
+            console.log("aaaaaaaaaaaaaaaaaaaa")
+        });
     };
 
     return (
