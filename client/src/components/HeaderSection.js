@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { authentication, getToken } from "../hook/useLogin";
+import logo from "../image/logo.png";
 import Button from "./common/button";
 import LoginIcon from "./header/LoginIcon";
-import logo from "../image/logo.png";
 
 function HeaderSection() {
     return (
@@ -45,6 +45,16 @@ function HeaderSection() {
                         }}
                     >
                         donate
+                    </NavLink>
+                    <NavLink
+                        to="/bookrequestform"
+                        style={({ isActive }) => {
+                            return isActive
+                                ? { backgroundColor: "#53391c" }
+                                : {};
+                        }}
+                    >
+                        request book
                     </NavLink>
 
                     <NavLink
