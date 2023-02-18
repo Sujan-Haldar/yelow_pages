@@ -28,14 +28,22 @@ const postBook = async (req, res) => {
 
     await book.save();
 
-    const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
+    const allReqBooks = await ReqBook.find();
+    
+    const requestedBookFindByTittle = allReqBooks.filter(reqbook =>
+        reqbook.title.toLowerCase() === req.body.title.toLowerCase()
+    )
+
+    // console.log(requestedBookFindByTittle);
+
+    // const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
     if(requestedBookFindByTittle){
         const userId = requestedBookFindByTittle[0].requestedBy;
         if(userId) {
             const user = await User.findById(userId);
             const email = user.email;
             const myTransporter = transporter();
-            const myMailOptions = mailOptions(email,'Book is available',`your requested book is now available at ${process.env.MAIN_WEBSITE_URL}`);
+            const myMailOptions = mailOptions(email,'Book is available',`your requested book is now available at ${process.env.MAIN_WEBSITE_URL}/books/${book._id}`);
             myTransporter.sendMail(myMailOptions, (err) => {
                 if (err) {
                    return res.send(book);
