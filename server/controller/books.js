@@ -31,7 +31,7 @@ const postBook = async (req, res) => {
     const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
     if(requestedBookFindByTittle){
         const userId = requestedBookFindByTittle[0].requestedBy;
-        if(user) {
+        if(userId) {
             const user = await User.findById(userId);
             const email = user.email;
             const myTransporter = transporter();
