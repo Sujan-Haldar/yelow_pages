@@ -30,9 +30,10 @@ const postBook = async (req, res) => {
 
     const requestedBookFindByTittle = await ReqBook.find({title : req.body.title});
     if(requestedBookFindByTittle){
-        const user = requestedBookFindByTittle[0].requestedBy;
+        const userId = requestedBookFindByTittle[0].requestedBy;
         if(user) {
-            const email = User.findById(user.email);
+            const user = await User.findById(userId);
+            const email = user.email;
             const myTransporter = transporter();
             const myMailOptions = mailOptions(email,'Book is available',`your requested book is now available at ${process.env.MAIN_WEBSITE_URL}`);
             myTransporter.sendMail(myMailOptions, (err) => {
