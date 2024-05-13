@@ -18,9 +18,9 @@ Welcome to our  Website! This platform aims to facilitate the donation of books 
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript, React
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
+ **Frontend**: HTML, CSS, JavaScript, React;
+ **Backend**: Node.js, Express.js;
+ **Database**: MongoDB;
 
 
 
