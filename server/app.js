@@ -4,12 +4,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const books = require("./routes/books");
+const reqBooks = require("./routes/reqBooks");
 const users = require("./routes/users");
 const wishlists = require("./routes/wishlists");
 const reviews = require("./routes/reviews");
 const login = require("./routes/login");
-const forgetPassword = require("./routes/forget-password")
-const verifyAccount = require("./routes/verify-account")
+const forgetPassword = require("./routes/forget-password");
+const verifyAccount = require("./routes/verify-account");
 
 //Internal imports
 const {
@@ -59,12 +60,13 @@ app.use(
 //Routing setup
 app.get("/", (req, res) => res.send("SERVER RUNNING.............."));
 app.use("/books", books);
+app.use("/req-books", reqBooks);
 app.use("/users", users);
 app.use("/wishlists", wishlists);
 app.use("/reviews", reviews);
 app.use("/login", login);
-app.use("/forget-password",forgetPassword)
-app.use("/verify-account",verifyAccount)
+app.use("/forget-password", forgetPassword);
+app.use("/verify-account", verifyAccount);
 app.get("/verify-Login", auth, (req, res) => {
     console.log(req.user);
     res.json({

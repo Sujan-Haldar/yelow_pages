@@ -6,7 +6,13 @@ const ProfileBook = ({ book, onDelete, pageLable }) => {
     return (
         <tr style={{ height: "20rem" }}>
             <td>
-                <NavLink to={`/books/${book._id}`}>
+                <NavLink
+                    to={
+                        pageLable !== "Requested Books"
+                            ? `/books/${book._id}`
+                            : "#"
+                    }
+                >
                     <img
                         className="book_img"
                         src={getBookImg(book)}
@@ -25,10 +31,19 @@ const ProfileBook = ({ book, onDelete, pageLable }) => {
                     <strong>Author : </strong> <span>{book.author}</span>
                 </div>
 
-                {pageLable !== "My Wishlist" ? (
+                {pageLable !== "My Wishlist" &&
+                pageLable !== "Requested Books" ? (
                     <div>
                         <strong>Donated On : </strong>
                         <span>{new Date(book.donatedOn).toLocaleString()}</span>
+                    </div>
+                ) : null}
+                {pageLable === "Requested Books" ? (
+                    <div>
+                        <strong>Requested On : </strong>
+                        <span>
+                            {new Date(book.requestedOn).toLocaleString()}
+                        </span>
                     </div>
                 ) : null}
             </td>

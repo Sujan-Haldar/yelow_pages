@@ -7,10 +7,12 @@ import AllUsersAdmin from "./admin Section/allUsersAdmin";
 import AllBooks from "./AllBooks";
 import BookDetails from "./BookDetails";
 import BookDonationForm from "./BookDonationForm";
+import BookRequestForm from "./BookRequestFrom";
 import ForgetPassword from "./ForgetPassword";
 import LoginForm from "./LoginForm";
 import Mydetails from "./Mydetails";
 import DonatedBooks from "./MyProfile/donatedBooks";
+import RequestedBooks from "./MyProfile/RequestedBook";
 import WishlistBooks from "./MyProfile/wishlistBooks";
 import { PrivateRoute } from "./OutletComponent";
 import PageNotFound from "./PageNotFound";
@@ -26,22 +28,85 @@ function RouteComponent() {
     return (
         <Routes>
             <Route path="/" element={<Sections />}></Route>
-            <Route path="/reviews" element={<ReviewSection />} ></Route>
+            <Route path="/reviews" element={<ReviewSection />}></Route>
             <Route path="/registration" element={<Registration />}></Route>
             <Route path="/signin" element={<LoginForm />}></Route>
-            <Route path="/forget-pasword" element={<SendPasswordResetLink />}></Route>
-            <Route path="/forget-pasword/:token" element={<ForgetPassword />}></Route>
-            <Route path="/verify-account" element={<SendAccountVerificationLink />}></Route>
+            <Route
+                path="/forget-pasword"
+                element={<SendPasswordResetLink />}
+            ></Route>
+            <Route
+                path="/forget-pasword/:token"
+                element={<ForgetPassword />}
+            ></Route>
+            <Route
+                path="/verify-account"
+                element={<SendAccountVerificationLink />}
+            ></Route>
 
-            <Route path="/verify-account/:token" element={<VerifyAccount />}></Route>
+            <Route
+                path="/verify-account/:token"
+                element={<VerifyAccount />}
+            ></Route>
 
             <Route path="/books" element={<AllBooks />}></Route>
 
-            <Route path="/bookdonationform" element={<PrivateRoute><BookDonationForm /></PrivateRoute>}></Route>
-            <Route path="/feedback" element={<PrivateRoute><ReviewForm/></PrivateRoute>}></Route>
-            <Route path="/myprofile" element={<PrivateRoute><Mydetails /></PrivateRoute>}></Route>
-            <Route path="/my-donated-books" element={<PrivateRoute><DonatedBooks /></PrivateRoute>}></Route>
-            <Route path="/my-wishlist" element={<PrivateRoute><WishlistBooks /></PrivateRoute>}></Route>
+            <Route
+                path="/bookdonationform"
+                element={
+                    <PrivateRoute>
+                        <BookDonationForm />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/bookrequestform"
+                element={
+                    <PrivateRoute>
+                        <BookRequestForm />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/feedback"
+                element={
+                    <PrivateRoute>
+                        <ReviewForm />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/myprofile"
+                element={
+                    <PrivateRoute>
+                        <Mydetails />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/my-donated-books"
+                element={
+                    <PrivateRoute>
+                        <DonatedBooks />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/my-requested-books"
+                element={
+                    <PrivateRoute>
+                        <RequestedBooks />
+                    </PrivateRoute>
+                }
+            ></Route>
+            <Route
+                path="/my-wishlist"
+                element={
+                    <PrivateRoute>
+                        <WishlistBooks />
+                    </PrivateRoute>
+                }
+            ></Route>
 
             {/* <Route path="/*" element={<OutletComponentTrue />}>
                 <Route path="bookdonationform" element={<BookDonationForm />} />
