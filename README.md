@@ -1,6 +1,7 @@
 # YELOW_PAGES
 
-Welcome to our  Website! This platform aims to facilitate the donation of books to those in need. Whether you have books to give away or are looking for books to read, this website connects donors with recipients in a seamless and efficient manner.
+Welcome to our  Website! 
+This platform aims to facilitate the donation of books to those in need. Whether you have books to give away or are looking for books to read, this website connects donors with recipients in a seamless and efficient manner.
 
 # OBJECTIVES
 
